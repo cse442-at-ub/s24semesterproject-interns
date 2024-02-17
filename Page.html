@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Quiz</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h1>Quiz</h1>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <p class="question">
+                    <label>what is your destined location?</label>
+                    <input type="text" name="question_1" />
+                </p>
+                <p>
+                    <label>Are you local or tourist?</label>
+                </p>
+                <from method="post" action="tourist.html">
+                    <ul class="choices">
+                        <li><input name="choice" type="radio" value="1" />Local</li>
+                        <li><input name="choice" type="radio" value="1" />Tourist</li>
+                    </ul>
+                    <input type="submit" value="NEXT" />
+                </from>
+            </div>
+        </main>
+        <footer>
+            <div class="container">
+                Interns &copy;2024, Quiz
+            </div>
+        </footer>
+    </body>
+</html>
