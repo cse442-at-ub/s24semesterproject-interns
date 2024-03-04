@@ -2,25 +2,30 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Connect to the MySQL database
-    $mysqli = new mysqli("localhost", "root", "", "Home_page");
+    $mysqli = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
+    } else {
+        echo "Connected successfully!";
+        // Continue with your code here
+    }
+    
     // mysqli_connect("localhost", "root", "", "Home_page");
     
     if ($mysqli->connect_error) {
         die("Connection failed: " . $mysqli->connect_error);
     }
-    // if (mysqli_connect_errno()){
-    //     echo "connect failed". mysqli_connect_error();
-    // }
-    // echo "successful";
+
 
 
     // Get user choices from the form
     $destinedLocation = $_POST["destined-location"];
     $userStatus = $_POST["user-status"];
+    $user_city = $_POST["user-status"];
 
     // insert data into the table
-    $stmt = $mysqli->prepare("INSERT INTO user_data (destined_location, user_status) VALUES (?, ?)");
-    $stmt->bind_param("ss", $destinedLocation, $userStatus);
+    $stmt = $mysqli->prepare("INSERT INTO user_data (destined_location, user_status, user_city) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $destinedLocation, $userStatus, $user_city);
     $stmt->execute();
 
     // Close database
