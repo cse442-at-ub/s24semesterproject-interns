@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Question 1</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <form method="post" action="quizpage.php"> <!-- Modified form tag -->
+                <p class="question">
+                    <label>Do you like history?</label>
+                </p >
+                <ul class="choices">
+                    <li><input name="history_choice" type="radio" onclick="recordClick('option1')" value="Nope" />Nope</li> 
+                    <p>Selected percentage: <span id="percentage">0%</span></p >
+                    <li><input name="history_choice" type="radio" onclick="recordClick('option2')" value="A little bit" />A little bit</li>
+                    <p>Selected percentage: <span id="percentage">0%</span></p >
+                    <li><input name="history_choice" type="radio" onclick="recordClick('option3')" value="I like it" />I like it</li>
+                    <p>Selected percentage: <span id="percentage">0%</span></p >
+                    <li><input name="history_choice" type="radio" onclick="recordClick('option4')" value="I love it!" />I love it!</li>
+                    <p>Selected percentage: <span id="percentage">0%</span></p >
+                </ul>
+                <input type="submit" value="NEXT" />
+            </form>
+        </div>
+        <script>
+            let clicks={
+                'option1':0,
+                'option2':0,
+                'option3':0
+            };
+
+            function recordClick(option){
+                clicks[option]++;
+                updatePercentage();
+            }
+            function updatePercentage(){
+                const totalClicks=Object.values(clicks).reduce((a,b)=>a+b,0)
+                const percentageDisplay=document.getElementById('percentageDisplay');
+                percentageDisplay.innerHTML= '';
+                var dropdown=document.getElementById("selection");
+                var selectedValue=dropdown.options[dropdown.selectedIndex].value;
+
+                var percentage=selectedValue*10;    //assume each option corresponds to a 10% increment
+
+                //Update the percentage display
+                document.getElementById("percentage").textContent=percentage+"%";
+
+                for (const option in clicks){
+                    const percentage=totalClicks===0?0:((clicks[option]/totalClicks)*100)
+                    percentageDisplay.innerHTML+='${option}: ${percentage}%<br>';
+                }
+            }
+        </script>
+    </main>
+
+    <footer>
+        <div class="container">
+            Interns &copy;2024, Quiz
+        </div>
+    </footer>
+
+</body>
+</html>
