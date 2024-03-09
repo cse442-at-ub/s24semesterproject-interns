@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            *{
+                margin : 0px;
+                padding:0;
+            }
+            #map{
+                margin-left: 0;
+                margin-right: auto;
+                height: 700px;
+                width: 50%;
+            } 
+            .search{
+                width: 100%;
+                text-align:center;
+                margin-top:50px;
+                margin-bottom: 50px;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+    </head>
+    <body>
+        <div class="search">
+            <input type="text" placeholder="Search your ideal location" name="search">
+            <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div id = "container">
+            <div id = "map">
+            </div>
+            <div id="sidebar">
+                <h2>Results</h2>
+                <ul id="places"></ul>
+                <!--<button id="more">Load more results</button> -->
+            </div>
+        </div>
+
+        <script src = "./function.js">
+        </script>
+        <script defer src ="https://maps.googleapis.com/maps/api/js?key=MY_Key&callback=intitMap&libraries=places" loading=async></script>
+    </body>
+</html>

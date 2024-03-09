@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3.4</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Question 3.4</h1>
+        </div>
+    </header>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #C3B1E1;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #CCCCFF;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answer-box {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .button-group {
+            text-align: center;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-group button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .next-button {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+    <main>
+        <div class="container">
+            <p>
+                <label>What type of study do you like to do?</label>
+            </p>
+            <form method="post" action="process.php">
+                <ul class="choices">
+                    <li><input name="choice" type="radio" onclick="recordClick('option1')" value="Visit Museums to learn about history" />Visit Museums to learn about history</li>
+                    <p>Selected percentage: <span id="percentage">0%</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option2')" value="Visit Religious insitute to learn religion history" />Visit Religious insitute to learn religion history</li>
+                    <p>Selected percentage: <span id="percentage">0%</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option3')" value="Visit historical sites to live the moment" />Visit historical sites to live the moment</li>
+                    <p>Selected percentage: <span id="percentage">0%</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option4')" value="Visit Public insitute for hisorical archives and local history" />Visit Public insitute for hisorical archives and local history</li>
+                    <p>Selected percentage: <span id="percentage">0%</span></p>
+                </ul>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            Interns &copy;2024, Quiz
+        </div>
+    </footer>
+</body>
+</html>
