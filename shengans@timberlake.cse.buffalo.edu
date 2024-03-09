@@ -20,11 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Get user choices from the form
     $destinedLocation = $_POST["destined-location"];
-    $user_city = $_POST["user-city"];
+    $userStatus = $_POST["user-status"];
+    $user_city = $_POST["user-status"];
 
     // insert data into the table
-    $stmt = $mysqli->prepare("INSERT INTO user_data (destined_location, user_city) VALUES (?, ?)");
-    $stmt->bind_param("ss", $destinedLocation, $user_city);
+    $stmt = $mysqli->prepare("INSERT INTO user_data (destined_location, user_status, user_city) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $destinedLocation, $userStatus, $user_city);
     $stmt->execute();
 
     // Close database
@@ -32,11 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mysqli->close();
 
     // move page
-    header("Location: local.html");
-    exit();
+    if ($userStatus === "local") {
+        header("Location: local.html");
+        exit();
+    } elseif ($userStatus === "tourist") {
+        header("Location: tourist.html");
+        exit();
+    }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,24 +106,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Welcome</h1>
         <form method="post" >
             <div class="question">
-                <label for="state">Enter a State:</label><br>
-                <!-- <input type="text" id="state" class="answer-box"> -->
+                <label for="destined-location">What is your destined location?</label><br>
                 <input type="text" name="destined-location" id="destined-location" class="answer-box">
             </div>
             <div class="question">
-                <label for="city">Enter a City:</label><br>
-                <!-- <input type="text" id="city" class="answer-box"> -->
-                <input type="text" name="user-city" id="user-city" class="answer-box">
+                <label>Are you a local or tourist?</label><br>
+                <div class="button-group">
+                    <button type="button" id="local-btn" onclick="selectLocal()">Local</button>
+                    <button type="button" id="tourist-btn" onclick="selectTourist()">Tourist</button>
+                </div>
+                <input type="hidden" name="user-status" id="user-status" value="">
             </div>
-            <button class="next-button" onclick="goToQuiz()">Next</button>
+            <button type="submit" class="next-button">Next</button>
         </form>
     </div>
 
     <script>
-        function goToQuiz() {
-            window.location.href = "quiz.html";
+        let selectedStatus = "";
+
+        function selectLocal() {
+            selectedStatus = "local";
+            document.getElementById("local-btn").classList.add("active");
+            document.getElementById("tourist-btn").classList.remove("active");
+            document.getElementById("user-status").value = selectedStatus;
+        }
+
+        function selectTourist() {
+            selectedStatus = "tourist";
+            document.getElementById("tourist-btn").classList.add("active");
+            document.getElementById("local-btn").classList.remove("active");
+            document.getElementById("user-status").value = selectedStatus;
         }
     </script>
 </body>
 </html>
-
