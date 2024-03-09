@@ -31,7 +31,10 @@ foreach ($data as $key => $value) {
     $result[$key] = explode(', ', $value);
 }
 
-$d = ['Yes','Necessities']
+$d = ['Yes','Necessities'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+}    
 
 
 ?>

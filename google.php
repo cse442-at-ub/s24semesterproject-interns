@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="./style.css">
     </head>
     <body>
+        <form method="post" >
         <div class="navbar">
             <a href="welcom.php">
                 <button type="submit">Return to welcome page</button>
