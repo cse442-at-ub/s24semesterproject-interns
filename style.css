@@ -11,6 +11,16 @@ body {
   width: 60%;
   border-style: solid;
 } 
+#loc{
+  font-size: 1.2rem;
+  color: white;
+  margin-right:25px;
+  margin-bottom:50px;
+}
+.state{
+  margin-top:0px;
+  text-align:right;
+}
 
 .navbar{
   background-color: black;
