@@ -7,11 +7,11 @@
                 padding:0;
             }
             #map{
-                margin-left: auto;
+                margin-left: 0;
                 margin-right: auto;
-                height: 400px;
+                height: 700px;
                 width: 50%;
-            }
+            } 
             .search{
                 width: 100%;
                 text-align:center;
@@ -19,6 +19,7 @@
                 margin-bottom: 50px;
             }
         </style>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
     </head>
     <body>
         <div class="search">
@@ -26,20 +27,18 @@
             <button type="submit">Submit</button>
             </form>
         </div>
-        <div id = "map">
-
+        <div id = "container">
+            <div id = "map">
+            </div>
+            <div id="sidebar">
+                <h2>Results</h2>
+                <ul id="places"></ul>
+                <!--<button id="more">Load more results</button> -->
+            </div>
         </div>
 
-        <script>
-            function intitMap(){
-                var location = {lat:-25.363, lng:131.044};
-                var map = new google.maps.Map(document.getElementById("map"),{
-                    map:map,
-                    zoom:4,
-                    center:location
-                });
-            }
+        <script src = "./function.js">
         </script>
-        <script  loading = async defer src ="https://maps.googleapis.com/maps/api/js?key=MY_KEY&callback=intitMap"></script>
+        <script defer src ="https://maps.googleapis.com/maps/api/js?key=MY_Key&callback=intitMap&libraries=places" loading=async></script>
     </body>
 </html>
