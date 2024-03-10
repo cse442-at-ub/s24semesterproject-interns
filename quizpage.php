@@ -332,7 +332,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             */
         }
         if ($_POST["cuisine_choice"] != NULL) {
-            header('Location:google.html');
+            header('Location:recommendation.php');
             exit;
         }
     }
@@ -445,7 +445,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             */
         }
         if ($_POST["site_choice"] != NULL) {
-            header('Location:google.html');
+            header('Location:recommendation.php');
             exit;
         }
     }
@@ -552,7 +552,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             */
         }
         if ($_POST["shopping_choice"] != NULL) {
-            header('Location:google.html');
+            header('Location:recommendation.php');
             exit;
         }
     }
@@ -660,7 +660,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             */
         }
         if ($_POST["choice"] != NULL) {
-            header('Location:google.html');
+            header('Location:recommendation.php');
             exit;
         }
     }
