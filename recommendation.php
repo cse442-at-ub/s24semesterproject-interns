@@ -1,5 +1,3 @@
-scp *.php shengans@timberlake.cse.buffalo.edu:~uploads
-
 <?php
 
 $data = [
@@ -12,13 +10,13 @@ $data = [
     'Americans' => 'United State, Cuba, Brazil, Mexico',
     
     'History' => 'Roman, Dinosaur, American, World',
-    'Chilling' => 'Beach, Theater, water park, Spa',
+    'Chilling' => 'Beach, Theater, water park, Spa, Juice bar, Dave and buster, Thriller park, Movie, Trampoline park',
     'Extreme sport' => 'Skydiving, skiing, Snow boarding, racing',
     'Recreational' => 'Dave and buster, Thriller park, Movie, Trampoline park',
     
     'Wearable items' => 'Clothes, jewelery, Bags, shoes',
     'Electronics' => 'Apple, Electronic store, Best Buy, Microcenter',
-    'Grocery' => 'Walmart, Costco, BJ wholesale, KRogers',
+    'Grocery' => 'Walmart, Costco, BJ wholesale, KRogers, 99 Cent store, Walmart, Target, Best Buy',
     'Necessities' => '99 Cent store, Walmart, Target, Best Buy',
     
     'Visit museums to learn about history' => 'Roman, Dinosaur, American, World',
@@ -35,7 +33,7 @@ foreach ($data as $key => $value) {
 
 
 
-$d = ['Yes','Necessities'];
+$d = ['Grocery','Chilling'];
 $final = "";
 
 
