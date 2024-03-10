@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <style>
-        /* CSS styles can be added here */
         body {
-            font-family: 'Times New Roman', Times, serif, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #C3B1E1;
+            background-color: #c47dd6;
         }
         .container {
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #CCCCFF;
-            border-radius: 10px;
+            background-color: #ec88ea;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
+        h1 {
             text-align: center;
         }
         .question {
@@ -34,25 +33,20 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-        .button-group {
-            text-align: center;
-        }
-        .button-group button {
-            padding: 10px 20px;
-            margin: 0 10px;
+        .next-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
             font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .button-group button.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .next-button {
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
+        .next-button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -60,42 +54,19 @@
     <div class="container">
         <h1>Welcome</h1>
         <div class="question">
-            <label for="destined-location">What is your destined location?</label><br>
-            <input type="text" id="destined-location" class="answer-box">
+            <label for="state">Enter a State:</label><br>
+            <input type="text" id="state" class="answer-box">
         </div>
         <div class="question">
-            <label>Are you a local or tourist?</label><br>
-            <div class="button-group">
-                <button id="local-btn" onclick="selectLocal()">Local</button>
-                <button id="tourist-btn" onclick="selectTourist()">Tourist</button>
-            </div>
+            <label for="city">Enter a City:</label><br>
+            <input type="text" id="city" class="answer-box">
         </div>
-        <button class="next-button" onclick="goToNext()">Next</button>
+        <button class="next-button" onclick="goToQuiz()">Next</button>
     </div>
 
     <script>
-        let selectedStatus = "";
-
-        function selectLocal() {
-            selectedStatus = "local";
-            document.getElementById("local-btn").classList.add("active");
-            document.getElementById("tourist-btn").classList.remove("active");
-        }
-
-        function selectTourist() {
-            selectedStatus = "tourist";
-            document.getElementById("tourist-btn").classList.add("active");
-            document.getElementById("local-btn").classList.remove("active");
-        }
-
-        function goToNext() {
-            if (selectedStatus === "local") {
-                window.location.href = "local.html";
-            } else if (selectedStatus === "tourist") {
-                window.location.href = "tourist.html";
-            } else {
-                alert("Please select your status!");
-            }
+        function goToQuiz() {
+            window.location.href = "quiz.html";
         }
     </script>
 </body>
