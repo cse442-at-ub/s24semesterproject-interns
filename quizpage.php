@@ -1,13 +1,13 @@
 <?php
 $keyword = [];
-$servername = "localhost";
+$servername = "";
 $username = "root";
 $password = "";
 //$dbname = "cse442_2024_spring_team_f_db";
 $dbname = "my442db";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+#$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "weitianw", '50430232', "cse442_2024_spring_team_f_db");
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $a=($_POST['alcohol_choice']);
     if (isset($_POST["alcohol_choice"])) {
         //echo "hello";
-        $current = "SELECT data_percent FROM mydb";
+        $current = "SELECT data_percent FROM interns_cse442";
         $value = $conn->query($current);
         $yes = 0;
         $no = 0;
@@ -47,37 +47,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $no = $dict["no"];
             }
             $sum = $yes + $no;
+            //yes
+            if ($sum == 0 & $yes ==0){
+                $per_yes = 'percentage1';
+            }
+            elseif ($sum != 0 & $yes ==0){
+                $per_yes = strval(($yes/$sum)*100 . '%') . "!!!";
+            }
+            else{
+                $per_yes = strval(($yes/$sum)*100 . '%') . "!!!";
+            }
+            // no
+            if ($sum == 0 & $no == 0){
+                $per_no = 'percentage2';
+            }
+            elseif ($sum != 0 &$no ==0){
+                $per_no = strval(($no/$sum)*100 . '%') . "...";
+            }
+            else{
+                $per_no = strval(($no/$sum)*100 . '%') . "...";
+            }
+
+            //current
             if ($a == "Yes"){
-                if ($sum == 0){
-                    $per_yes = "per1";
-                }
-                else{
-                    $per_yes = strval(($yes/$sum)*100 . '%');
-                }
                 $yes = $yes +1;
             }
             else{
-                if ($sum == 0){
-                    $per_no = "per2";
-                }
-                else{
-                    $per_no = strval(($no/$sum)*100 . '%');
-                }
                 $no = $no + 1;
             }
             $sum = $yes + $no; 
-            $html_yes = strval(($yes/$sum)*100 . '%');
+            $html_yes = strval(($yes/$sum)*100 . '%') . "!!!";
+            $html_no = strval(($no/$sum)*100 . '%') . "...";
             $newhtml = str_replace($per_yes, $html_yes, $html);
-
-            $html_no = strval(($no/$sum)*100 . '%');
-            $newhtml = str_replace($per_no, $html_no, $html);
+            $newhtml = str_replace($per_no, $html_no, $newhtml);
+            file_put_contents("question1.html", $newhtml);
             $dict["yes"]=$yes;
             $dict["no"]=$no;
             $json_en = json_encode($dict);
-            $sql = "UPDATE mydb SET data_percent = '$json_en' WHERE id='1'";
+            $sql = "UPDATE interns_cse442 SET data_percent = '$json_en' WHERE id='1'";
             //$html = str_replace('<span id="percentage1">precentage1</span>', '<span id="percentage1">'.$html_yes.'</span>', $html);
 
-            file_put_contents("question1.html", $newhtml);
             /*
             $data = array(
                 'percentage1' => $html_yes,
@@ -106,13 +115,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['purpose_choice']);
     if (isset($_POST["purpose_choice"])) {
         echo "hello";
-        $current = "SELECT data_percent FROM mydb";
+        $current = "SELECT data_percent FROM interns_cse442";
         $value = $conn->query($current);
         $food = 0;
         $experience = 0;
         $shopping = 0;
         $study = 0;
         $sum = 0;
+        $b = "";
+        $c = "";
+        $d = "";
+        $e = "";
         $dict = array();
         $html_food = "";
         $html_ex = "";
@@ -127,6 +140,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $shopping = $dict["shopping"];
                 $study = $dict["study"];
             }
+            $sum = $food + $experience + $shopping + $study;
+            //b
+            if ($sum == 0 & $food ==0){
+                $b = 'percentage1';
+            }
+            else{
+                $b = strval(($food/$sum)*100 . '%') . "!!!";
+            }
+            // c
+            if ($sum == 0 & $experience == 0){
+                $c = 'percentage2';
+            }
+            else{
+                $c = strval(($experience/$sum)*100 . '%') . "...";
+            }
+            //d
+            if ($sum == 0 & $shopping == 0){
+                $d = 'percentage3';
+            }
+            else{
+                $d = strval(($shopping/$sum)*100 . '%') . "~~~";
+            }
+            //e
+            if ($sum == 0 & $study == 0){
+                $e = 'percentage4';
+            }
+            else{
+                $e = strval(($study/$sum)*100 . '%') . "***";
+            }
+
             if ($a == "For Food"){
                 $food = $food +1;
             }
@@ -140,20 +183,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $study = $study + 1;
             }
             $sum = $food + $experience + $shopping + $study;
-            $html_food = strval(($food/$sum)*100 . '%');
-            $html_ex = strval(($experience/$sum)*100 . '%');
-            $html_shop = strval(($shopping/$sum)*100 . '%');
-            $html_study = strval(($study/$sum)*100 . '%');
+            $html_food = strval(($food/$sum)*100 . '%') . "!!!";
+            $html_ex = strval(($experience/$sum)*100 . '%') . "...";
+            $html_shop = strval(($shopping/$sum)*100 . '%') . "~~~";
+            $html_study = strval(($study/$sum)*100 . '%') . "***";
             $dict["food"]=$food;
             $dict["experience"]= $experience;
             $dict["shopping"] = $shopping;
             $dict["study"] = $study;
             $json_en = json_encode($dict);
-            $sql = "UPDATE mydb SET data_percent = '$json_en' WHERE id ='1'";
-            $html = str_replace('<span id="percentage">{0%}</span>', '<span id="percentage">'.$html_food.'</span>', $html);
-            $html =str_replace('<span id="percentage">[0%]</span>', '<span id="percentage">'.$html_ex.'</span>', $html);
-            $html =str_replace('<span id="percentage">(0%)</span>', '<span id="percentage">'.$html_shop.'</span>', $html);
-            $html =str_replace('<span id="percentage">{{0%}}</span>', '<span id="percentage">'.$html_study.'</span>', $html);
+            $sql = "UPDATE interns_cse442 SET data_percent = '$json_en' WHERE id ='1'";
+            $newhtml = str_replace($b, $html_food, $html);
+            $newhtml = str_replace($c, $html_ex, $newhtml);
+            $newhtml = str_replace($d, $html_shop, $newhtml);
+            $newhtml = str_replace($e, $html_study, $newhtml);
+            file_put_contents("question2.html", $newhtml);
             if ($conn->query($sql) === TRUE) {
                 echo "Record updated successfully";
             } else {
@@ -191,13 +235,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['cuisine_choice']);
         if (isset($_POST["cuisine_choice"])) {
             echo "hello";
-            $current = "SELECT data_percent FROM mydb";
+            $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $european = 0;
             $asian = 0;
             $middle = 0;
             $usa = 0;
             $sum = 0;
+            $b = "";
+            $c = "";
+            $d = "";
+            $e = "";
             $dict = array();
             $html_european = "";
             $html_asian = "";
@@ -212,6 +260,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $middle = $dict["middle"];
                     $usa = $dict["usa"];
                 }
+                $sum = $european + $asian + $middle + $usa;
+                //b
+                if ($sum == 0 & $european ==0){
+                    $b = 'percentage1';
+                }
+                else{
+                    $b = strval(($european/$sum)*100 . '%') . "!!!";
+                }
+                // c
+                if ($sum == 0 & $asian == 0){
+                    $c = 'percentage2';
+                }
+                else{
+                    $c = strval(($asian/$sum)*100 . '%') . "...";
+                }
+                //d
+                if ($sum == 0 & $middle == 0){
+                    $d = 'percentage3';
+                }
+                else{
+                    $d = strval(($middle/$sum)*100 . '%') . "~~~";
+                }
+                //e
+                if ($sum == 0 & $usa == 0){
+                    $e = 'percentage4';
+                }
+                else{
+                    $e = strval(($usa/$sum)*100 . '%') . "***";
+                }
                 if ($a == "European"){
                     $european = $european +1;
                 }
@@ -225,20 +302,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $usa = $usa +1;
                 }
                 $sum = $european + $asian + $middle + $usa;
-                $html_european = strval(($european/$sum)*100 . '%');
-                $html_asian = strval(($asian/$sum)*100 . '%');
-                $html_middle = strval(($middle/$sum)*100 . '%');
-                $html_usa = strval(($usa/$sum)*100 . '%');
+                $html_european = strval(($european/$sum)*100 . '%') . "!!!";
+                $html_asian = strval(($asian/$sum)*100 . '%') . "...";
+                $html_middle = strval(($middle/$sum)*100 . '%') . "~~~";
+                $html_usa = strval(($usa/$sum)*100 . '%') . "***";
                 $dict["european"] = $european;
                 $dict["asian"] = $asian;
                 $dict["middle"] = $middle;
                 $dict["usa"] = $usa;
                 $json_en = json_encode($dict);
-                $sql = "UPDATE mydb SET data_percent = '$json_en' WHERE id ='1'";
-                $html = str_replace('<span id="percentage">{0%}</span>', '<span id="percentage">'.$html_european.'</span>', $html);
-                $html =str_replace('<span id="percentage">[0%]</span>', '<span id="percentage">'.$html_asian.'</span>', $html);
-                $html =str_replace('<span id="percentage">(0%)</span>', '<span id="percentage">'.$html_middle.'</span>', $html);
-                $html =str_replace('<span id="percentage">{{0%}}</span>', '<span id="percentage">'.$html_usa.'</span>', $html);
+                $sql = "UPDATE interns_cse442 SET data_percent = '$json_en' WHERE id ='1'";
+                $newhtml = str_replace($b, $html_european, $html);
+                $newhtml = str_replace($c, $html_asian, $newhtml);
+                $newhtml = str_replace($d, $html_middle, $newhtml);
+                $newhtml = str_replace($e, $html_usa, $newhtml);
+                file_put_contents("question3.1.html", $newhtml);
                 if ($conn->query($sql) === TRUE) {
                     echo "Record updated successfully";
                 } else {
@@ -264,13 +342,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['site_choice']);
         if (isset($_POST["site_choice"])) {
             echo "hello";
-            $current = "SELECT data_percent FROM mydb";
+            $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $history = 0;
             $recreate = 0;
             $sport = 0;
             $relax = 0;
             $sum = 0;
+            $b = "";
+            $c = "";
+            $d = "";
+            $e = "";
             $dict = array();
             $html_his = "";
             $html_recre = "";
@@ -285,6 +367,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $sport = $dict["sport"];
                     $relax = $dict["relax"];
                 }
+                $sum = $history + $recreate + $sport + $relax;
+                //b
+                if ($sum == 0 & $history ==0){
+                    $b = 'percentage1';
+                }
+                else{
+                    $b = strval(($history/$sum)*100 . '%') . "!!!";
+                }
+                // c
+                if ($sum == 0 & $recreate == 0){
+                    $c = 'percentage2';
+                }
+                else{
+                    $c = strval(($recreate/$sum)*100 . '%') . "...";
+                }
+                //d
+                if ($sum == 0 & $sport == 0){
+                    $d = 'percentage3';
+                }
+                else{
+                    $d = strval(($sport/$sum)*100 . '%') . "~~~";
+                }
+                //e
+                if ($sum == 0 & $relax == 0){
+                    $e = 'percentage4';
+                }
+                else{
+                    $e = strval(($relax/$sum)*100 . '%') . "***";
+                }
+
                 if ($a == "History"){
                     $history = $history +1;
                 }
@@ -298,25 +410,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $relax = $relax +1;
                 }
                 $sum = $history + $recreate + $sport + $relax;
-                $html_his = strval(($history/$sum)*100 . '%');
-                $html_recre = strval(($recreate/$sum)*100 . '%');
-                $html_sport = strval(($sport/$sum)*100 . '%');
-                $html_relax = strval(($relax/$sum)*100 . '%');
+                $html_his = strval(($history/$sum)*100 . '%') . "!!!";
+                $html_recre = strval(($recreate/$sum)*100 . '%') . "...";
+                $html_sport = strval(($sport/$sum)*100 . '%') . "~~~";
+                $html_relax = strval(($relax/$sum)*100 . '%') . "***";
                 $dict["history"] = $history;
                 $dict["recreate"] = $recreate;
                 $dict["sport"] = $sport;
                 $dict["relax"] = $relax;
                 $json_en = json_encode($dict);
-                $sql = "UPDATE mydb SET data_percent = '$json_en' WHERE id ='1'";
+                $sql = "UPDATE interns_cse442 SET data_percent = '$json_en' WHERE id ='1'";
                 if ($conn->query($sql) === TRUE) {
                     echo "Data inserted successfully";
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
-                $html = str_replace('<span id="percentage">{0%}</span>', '<span id="percentage">'.$html_his.'</span>', $html);
-                $html =str_replace('<span id="percentage">[0%]</span>', '<span id="percentage">'.$html_recre.'</span>', $html);
-                $html =str_replace('<span id="percentage">(0%)</span>', '<span id="percentage">'.$html_sport.'</span>', $html);
-                $html =str_replace('<span id="percentage">{{0%}}</span>', '<span id="percentage">'.$html_relax.'</span>', $html);
+                $newhtml = str_replace($b, $html_his, $html);
+                $newhtml = str_replace($c, $html_rece, $newhtml);
+                $newhtml = str_replace($d, $html_sport, $newhtml);
+                $newhtml = str_replace($e, $html_relax, $newhtml);
+                file_put_contents("question3.2.html", $newhtml);
                 if ($conn->query($sql) === TRUE) {
                     echo "Record updated successfully";
                 } else {
@@ -342,13 +455,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['shopping_choice']);
         if (isset($_POST["shopping_choice"])) {
             echo "hello";
-            $current = "SELECT data_percent FROM mydb";
+            $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $wear = 0;
             $elect = 0;
             $grocery = 0;
             $necess = 0;
             $sum = 0;
+            $b = "";
+            $c = "";
+            $d = "";
+            $e = "";
             $dict = array();
             $html_wear = "";
             $html_elect = "";
@@ -363,6 +480,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $grocery = $dict["grocery"];
                     $necess = $dict["necess"];
                 }
+                $sum = $wear + $elect + $grocery + $necess;
+                //b
+                if ($sum == 0 & $wear ==0){
+                    $b = 'percentage1';
+                }
+                else{
+                    $b = strval(($wear/$sum)*100 . '%') . "!!!";
+                }
+                // c
+                if ($sum == 0 & $elect == 0){
+                    $c = 'percentage2';
+                }
+                else{
+                    $c = strval(($elect/$sum)*100 . '%') . "...";
+                }
+                //d
+                if ($sum == 0 & $grocery == 0){
+                    $d = 'percentage3';
+                }
+                else{
+                    $d = strval(($grocery/$sum)*100 . '%') . "~~~";
+                }
+                //e
+                if ($sum == 0 & $necess== 0){
+                    $e = 'percentage4';
+                }
+                else{
+                    $e = strval(($necess/$sum)*100 . '%') . "***";
+                }
                 if ($a == "Wearable items"){
                     $wear = $wear +1;
                 }
@@ -376,20 +522,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $necess = $necsee +1;
                 }
                 $sum = $wear + $elect + $grocery + $necess;
-                $html_wear = strval(($wear/$sum)*100 . '%');
-                $html_elect = strval(($elect/$sum)*100 . '%');
-                $html_gro = strval(($grocery/$sum)*100 . '%');
-                $html_necess = strval(($necess/$sum)*100 . '%');
+                $html_wear = strval(($wear/$sum)*100 . '%') . "!!!";
+                $html_elect = strval(($elect/$sum)*100 . '%') . "...";
+                $html_gro = strval(($grocery/$sum)*100 . '%') . "~~~";
+                $html_necess = strval(($necess/$sum)*100 . '%') . "***";
                 $dict["wear"] = $wear;
                 $dict["elect"] = $elect;
                 $dict["grocery"] = $grocery;
                 $dict["necess"] = $necess;
                 $json_en = json_encode($dict);
-                $sql = "UPDATE mydb SET data_percent = '$json_en' WHERE id ='1'";
-                $html = str_replace('<span id="percentage">{0%}</span>', '<span id="percentage">'.$html_wear.'</span>', $html);
-                $html =str_replace('<span id="percentage">[0%]</span>', '<span id="percentage">'.$html_elect.'</span>', $html);
-                $html =str_replace('<span id="percentage">(0%)</span>', '<span id="percentage">'.$html_gro.'</span>', $html);
-                $html =str_replace('<span id="percentage">{{0%}}</span>', '<span id="percentage">'.$html_necess.'</span>', $html);
+                $sql = "UPDATE interns_cse442 SET data_percent = '$json_en' WHERE id ='1'";
+                $newhtml = str_replace($b, $html_wear, $html);
+                $newhtml = str_replace($c, $html_elect, $newhtml);
+                $newhtml = str_replace($d, $html_gro, $newhtml);
+                $newhtml = str_replace($e, $html_necess, $newhtml);
+                file_put_contents("question3.3.html", $newhtml);
                 if ($conn->query($sql) === TRUE) {
                     echo "Record updated successfully";
                 } else {
@@ -415,13 +562,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['choice']);
         if (isset($_POST["choice"])) {
             echo "hello";
-            $current = "SELECT data_percent FROM mydb";
+            $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $museum = 0;
             $book = 0;
             $site = 0;
             $nature = 0;
             $sum = 0;
+            $b = "";
+            $c = "";
+            $d = "";
+            $e = "";
             $dict = array();
             $html_museum = "";
             $html_book = "";
@@ -435,7 +586,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $book = $dict["book"];
                     $site = $dict["site"];
                     $nature = $dict["nature"];
+                    $sum = $museum + $book + $site + $nature;
                 }
+                //b
+                if ($sum == 0 & $museum ==0){
+                    $b = 'percentage1';
+                }
+                else{
+                    $b = strval(($museum/$sum)*100 . '%') . "!!!";
+                }
+                // c
+                if ($sum == 0 & $book == 0){
+                    $c = 'percentage2';
+                }
+                else{
+                    $c = strval(($book/$sum)*100 . '%') . "...";
+                }
+                //d
+                if ($sum == 0 & $site == 0){
+                    $d = 'percentage3';
+                }
+                else{
+                    $d = strval(($site/$sum)*100 . '%') . "~~~";
+                }
+                //e
+                if ($sum == 0 & $nature== 0){
+                    $e = 'percentage4';
+                }
+                else{
+                    $e = strval(($nature/$sum)*100 . '%') . "***";
+                }
+
                 if ($a == "Visit Museums to learn about history"){
                     $museum = $museum +1;
                 }
@@ -449,20 +630,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $nature = $nature +1;
                 }
                 $sum = $museum + $book + $site + $nature;
-                $html_museum = strval(($museum/$sum)*100 . '%');
-                $html_book = strval(($book/$sum)*100 . '%');
-                $html_site = strval(($site/$sum)*100 . '%');
-                $html_nature = strval(($nature/$sum)*100 . '%');
+                $html_museum = strval(($museum/$sum)*100 . '%') . "!!!";
+                $html_book = strval(($book/$sum)*100 . '%') . "...";
+                $html_site = strval(($site/$sum)*100 . '%') . "~~~";
+                $html_nature = strval(($nature/$sum)*100 . '%') . "***";
                 $dict["museum"] = $museum;
                 $dict["book"] = $book;
                 $dict["site"] = $site;
                 $dict["nature"] = $nature;
                 $json_en = json_encode($dict);
-                $sql = "UPDATE mydb SET data_percent = '$json_en' WHERE id ='1'";
-                $html = str_replace('<span id="percentage">{0%}</span>', '<span id="percentage">'.$html_museum.'</span>', $html);
-                $html =str_replace('<span id="percentage">[0%]</span>', '<span id="percentage">'.$html_book.'</span>', $html);
-                $html =str_replace('<span id="percentage">(0%)</span>', '<span id="percentage">'.$html_site.'</span>', $html);
-                $html =str_replace('<span id="percentage">{{0%}}</span>', '<span id="percentage">'.$html_nature.'</span>', $html);
+                $sql = "UPDATE interns_cse442 SET data_percent = '$json_en' WHERE id ='1'";
+                $newhtml = str_replace($b, $html_museum, $html);
+                $newhtml = str_replace($c, $html_book, $newhtml);
+                $newhtml = str_replace($d, $html_site, $newhtml);
+                $newhtml = str_replace($e, $html_nature, $newhtml);
+                file_put_contents("question3.4.html", $newhtml);
                 if ($conn->query($sql) === TRUE) {
                     echo "Record updated successfully";
                 } else {

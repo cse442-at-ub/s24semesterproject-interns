@@ -31,7 +31,8 @@ $password = "";
 //$dbname = "cse442_2024_spring_team_f_db";
 $dbname = "my442db";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+#$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "weitianw", '50430232', "cse442_2024_spring_team_f_db");
 
 // Check connection
 if ($conn->connect_error) {
@@ -56,7 +57,7 @@ $data = array("yes"=>0, "no"=>0, "food"=>0, "experience"=>0, "shopping"=>0, "stu
 
 $json_en = json_encode($data);
 
-$sql = "INSERT INTO mydb (id, data_percent) VALUES ('1','$json_en')";
+$sql = "INSERT INTO interns_cse442 (id, data_percent) VALUES ('1','$json_en')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Data inserted successfully";
