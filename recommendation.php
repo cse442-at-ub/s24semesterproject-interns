@@ -1,3 +1,5 @@
+scp *.php shengans@timberlake.cse.buffalo.edu:~uploads
+
 <?php
 
 $data = [
@@ -31,10 +33,11 @@ foreach ($data as $key => $value) {
     $result[$key] = explode(', ', $value);
 }
 
-$d = ['Yes','Necessities'];
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-}    
+
+$d = ['Yes','Necessities'];
+$final = "";
+
 
 
 ?>
@@ -106,6 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script>
         function navigateToGoogle(category) {
+            sessionStorage.setItem("key",category)
+            console.log(sessionStorage.getItem("key"))
+
             window.location.href = `google.php`;
         }
     </script>
