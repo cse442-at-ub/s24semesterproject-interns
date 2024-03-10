@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script>
         function goToQuiz() {
-            window.location.href = "quiz.html";
+            window.location.href = "catalogs.html";
         }
     </script>
 </body>
