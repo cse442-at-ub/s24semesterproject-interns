@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q2</title>
+    <title>Q3.4</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Question 2</h1>
+            <h1>Question 3.4</h1>
         </div>
     </header>
     <style>
@@ -64,24 +64,26 @@
     </style>
     <main>
         <div class="container">
-            <form method="post" action="google.html"> 
-                <p class="question">
-                    <label>What is the purpose of your travel?</label>
-                </p>
+            <p>
+                <label>What type of study do you like to do?</label>
+            </p>
+            <form method="post" action="process.php">
                 <ul class="choices">
-                    <li><input name="history_choice" type="radio" onclick="recordClick('option1')" value="For Food" />For Food</li>
-                    <p>Selected percentage: <span id="percentage">0%</span></p>
-                    <li><input name="history_choice" type="radio" onclick="recordClick('option2')" value="For the experience" />For the experience</li>
-                    <p>Selected percentage: <span id="percentage">0%</span></p>
-                    <li><input name="history_choice" type="radio" onclick="recordClick('option3')" value="For Shopping" />For Shopping</li>
-                    <p>Selected percentage: <span id="percentage">0%</span></p>
-                    <li><input name="history_choice" type="radio" onclick="recordClick('option4')" value="For Academic Purpose" />For Academic Purpose</li>
-                    <p>Selected percentage: <span id="percentage">0%</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option1')" value="Visit Museums to learn about history" />Visit Museums to learn about history</li>
+                    <p>Selected percentage: <span id="percentage">percentage1</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option2')" value="Visit Religious insitute to learn religion history" />Visit Religious insitute to learn religion history</li>
+                    <p>Selected percentage: <span id="percentage">percentage2</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option3')" value="Visit historical sites to live the moment" />Visit historical sites to live the moment</li>
+                    <p>Selected percentage: <span id="percentage">percentage3</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option4')" value="Visit Public insitute for hisorical archives and local history" />Visit Public insitute for hisorical archives and local history</li>
+                    <p>Selected percentage: <span id="percentage">percentage4</span></p>
                 </ul>
-                <input type="submit" value="NEXT" />
+                <input type="submit" value="Submit" />
             </form>
         </div>
+        
     </main>
+
     <footer>
         <div class="container">
             Interns &copy;2024, Quiz

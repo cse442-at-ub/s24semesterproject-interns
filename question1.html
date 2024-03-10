@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Q1</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -34,7 +35,7 @@
             margin-bottom: 20px;
         }
         .answer-box {
-            width: 100%;
+            width: 101075%;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
@@ -64,20 +65,20 @@
     </style>
     <main>
         <div class="container">
-            <form method="post" action="google.html"> 
+            <form method="post" action="quizpage.php"> 
                 <p class="question">
                     <label>Do you like alcohol?</label>
                 </p>
                 <ul class="choices">
-                    <li><input name="history_choice" type="radio" onclick="recordClick('option1')" value="Yes" />Yes</li> 
-                    <p>Selected percentage: <span id="percentage">0%</span></p>
-                    <li><input name="history_choice" type="radio" onclick="recordClick('option2')" value="No" />No</li>
-                    <p>Selected percentage: <span id="percentage">0%</span></p>
+                    <li><input name="alcohol_choice" type="radio" onclick="recordClick('option1')" value="Yes" />Yes</li> 
+                    <p>Selected percentage: <span id=percentage>percentage1</span></p>
+                    <li><input name="alcohol_choice" type="radio" onclick="recordClick('option2')" value="No" />No</li>
+                    <p>Selected percentage: <span id=percentage>percentage2</span></p>
                 </ul>
                 <input type="submit" value="NEXT" />
             </form>
         </div>
-        
+          
     </main>
 
     <footer>
@@ -88,3 +89,4 @@
 
 </body>
 </html>
+
