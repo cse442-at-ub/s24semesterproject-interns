@@ -3,110 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogs</title>
-    <style>
-        body {
-            font-family: 'Times New Roman', Times, serif, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #C3B1E1;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #CCCCFF;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .answer-box {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .button-group {
-            text-align: center;
-        }
-        .button-group button {
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button-group button.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .next-button {
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .section {
-            background-color: #CCCCFF;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .section h2 {
-            margin-top: 0;
-            text-align: center;
-        }
-        .section p {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .section img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
-        <main>
-            <div class="section">
-                <h2>Welcome to Our Website!</h2>
-                <p>We are excited to introduce you to our website. Here's what you can find:</p>
+    <header>
+        <div class="container">
+            <h1>Catalogs</h1>
+        </div>
+        <style>
+            body {
+                font-family: 'Times New Roman', Times, serif, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #C3B1E1;
+            }
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: #CCCCFF;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1, h2 {
+                text-align: center;
+            }
+            .question {
+                margin-bottom: 20px;
+            }
+            .answer-box {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+            .button-group {
+                text-align: center;
+            }
+            .button-group button {
+                padding: 10px 20px;
+                margin: 0 10px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .button-group button.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+            .next-button {
+                margin-top: 20px;
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
+    </header>
+
+    <main>
+        <div class="container">
+            <form method="post" action="google.html"> <!-- Modified form tag -->
+                <p class="question">
+                    <label>Welcome to Interns! Our website can provide some travel recommendations based on the user's needs, the main sections are:</label>
+                </p>
                 <ul>
-                    <li><strong>History:</strong> Some hisorical Place</li>
-                    <li><strong>Restaurant:</strong> Many foods that have different cuisine.</li>
-                    <li><strong>About Us:</strong> Get to know more about our company.</li>
-                    <li><strong>Contact Us:</strong> Reach out to us for any inquiries or support.</li>
+                        <li>Quiz</li>
+                        <li>Recommendations</li>
+                        <li>Map</li>
                 </ul>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Quiz-Page</a></li>
-                    <li><a href="#">Recommendation-Page</a></li>
-                    <li><a href="#">Map-Page</a></li>
-                </ul>
-            </nav>
-            
-        </main>
-        <button class="next-button" onclick="goToNext()">Next</button>
-    </div>
+                <p>
+                    <label>Let's taking quiz first!</label>
+                   </p>
+                <input type="submit" value="Start Quiz" />
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            Interns &copy;2024, Catalogs
+        </div>
+    </footer>
+    
 </body>
+</html></title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
 </html>
