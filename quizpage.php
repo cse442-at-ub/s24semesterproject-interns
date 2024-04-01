@@ -5,9 +5,10 @@ $username = "root";
 $password = "";
 //$dbname = "cse442_2024_spring_team_f_db";
 $dbname = "my442db";
+$recommend = [];
 
-#$conn = new mysqli($servername, $username, $password, $dbname);
-$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "weitianw", '50430232', "cse442_2024_spring_team_f_db");
+$conn = new mysqli($servername, $username, $password, $dbname);
+#$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "weitianw", '50430232', "cse442_2024_spring_team_f_db");
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
@@ -27,6 +28,7 @@ if ($conn->query($sql) === TRUE) {
 // question1
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $a=($_POST['alcohol_choice']);
+    $recommend += $a;
     if (isset($_POST["alcohol_choice"])) {
         //echo "hello";
         $current = "SELECT data_percent FROM interns_cse442";
@@ -235,6 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['cuisine_choice']);
         if (isset($_POST["cuisine_choice"])) {
             echo "hello";
+            $recommend += $a;
             $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $european = 0;
@@ -342,6 +345,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['site_choice']);
         if (isset($_POST["site_choice"])) {
             echo "hello";
+            $recommend += $a;
             $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $history = 0;
@@ -455,6 +459,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['shopping_choice']);
         if (isset($_POST["shopping_choice"])) {
             echo "hello";
+            $recommend += $a;
             $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $wear = 0;
@@ -562,6 +567,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $a=($_POST['choice']);
         if (isset($_POST["choice"])) {
             echo "hello";
+            $recommend += $a;
             $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $museum = 0;
@@ -660,7 +666,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             */
         }
         if ($_POST["choice"] != NULL) {
-            header('Location:recommendation.php');
+            $list_encoded = urlencode(json_encode($list));
+            header("Location: recommendations.php?data=$recommend");
             exit;
         }
     }

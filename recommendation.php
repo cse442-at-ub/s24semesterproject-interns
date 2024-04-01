@@ -31,11 +31,8 @@ foreach ($data as $key => $value) {
     $result[$key] = explode(', ', $value);
 }
 
-
-
-$d = ['Grocery','Chilling'];
-$final = "";
-
+$d = $_GET['data'];
+$d = json_decode(urldecode($list_encoded), true);
 
 
 ?>
