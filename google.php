@@ -50,6 +50,15 @@
                 <ul id="places"></ul>
             </div>
         </div> 
+        <div class="chat">
+            <div id="chat-messages">   
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatbox" placeholder="Type your message...">
+                <button onclick="addchat()">Post</button>
+                <hr style="height:2px;border-width:0;color:black;background-color:black">
+            </div>
+        </div>
         <div class="footer">
             <h2>Intern Limited, 2024 </h2>
             <a href ="https://cloud.google.com/maps-platform/terms/"> Term of Service</a>
