@@ -17,6 +17,28 @@
         $city = $row["user_city"];
     }
     $loc = $city . ", " . $state;
+
+
+
+
+    $sql3 = "SELECT * FROM comments_db";
+
+    $result = mysqli_query($mysqli, $sql3);
+
+    $chat_messages = ""; 
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $id = $row["Name"];
+        $message = $row["message"];
+        $chat_messages .= "$id: $message<br>";
+    }
+
+
+
+
+
+
+
     $mysqli->close();
 
 
@@ -81,8 +103,8 @@
             </div>
         </div> 
         <div class="chat">
-            <div id="chat-messages">   
-            </div>
+           
+            
 
             <form method="post" >
                 <div class="chat-input">
@@ -94,7 +116,14 @@
             </form>
 
             <!-- <h1>Guest: Toronto's good place!</h1> -->
-            <h3><?php echo("Guest: Toronto's good place!")  ?> </h3>
+            <h3>            
+
+                 <?php echo $chat_messages; ?>
+
+            </h3>
+
+
+
         </div>
         <hr>
         <div class="footer">
