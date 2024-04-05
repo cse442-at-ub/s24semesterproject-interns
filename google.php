@@ -19,7 +19,35 @@
     $loc = $city . ", " . $state;
     $mysqli->close();
 
+
+
+    //
 ?>
+
+
+<?php
+    $conn =  new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (!empty($_POST['chatbox'])) {
+            $message = $_POST['chatbox'];
+            $name = "Guest"; 
+            $sql_insert_message = "INSERT INTO comments_db (Name, message) VALUES ('$name', '$message')";
+            if ($conn->query($sql_insert_message) === TRUE) {
+                
+            } else {
+                echo "Error adding message: " . $conn->error . "<br>";
+            }
+        }
+    }
+
+    $conn->close();
+?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +61,7 @@
             <a href="welcome.php">
                 <button type="submit">Return to welcome page</button>
             </a>  
-            <a href="question1.html">
+            <a href="local.html">
                 <button type="submit">Retake quiz</button>
             </a>
             <a href="recommendation.php">
@@ -53,12 +81,20 @@
         <div class="chat">
             <div id="chat-messages">   
             </div>
-            <div class="chat-input">
-                <input type="text" id="chatbox" placeholder="Type your message...">
-                <button onclick="addchat()">Post</button>
-                <hr style="height:2px;border-width:0;color:black;background-color:black">
-            </div>
+
+            <form method="post" >
+                <div class="chat-input">
+                    <input type="text" id="chatbox" name="chatbox" placeholder="Type your message...">
+
+                    <button onclick="addchat()">Post</button>
+                    <hr style="height:2px;border-width:0;color:black;background-color:black">
+                </div>
+            </form>
+
+            <!-- <h1>Guest: Toronto's good place!</h1> -->
+            <h3><?php echo("Guest: Toronto's good place!")  ?> </h3>
         </div>
+        <hr>
         <div class="footer">
             <h2>Intern Limited, 2024 </h2>
             <a href ="https://cloud.google.com/maps-platform/terms/"> Term of Service</a>
