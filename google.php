@@ -67,7 +67,15 @@
             }
         }
     }
-
+    $sql2 = "SELECT * FROM `comments_db` ";
+    $result = mysqli_query($conn, $sql2); 
+    
+    $msg = "";
+    while ($row = mysqli_fetch_array($result)) {
+        $name =$row["Name"];
+        $message = $row["message"];
+        $msg = $msg ."<br>" . $name . ": " . $message ;
+    }
     $conn->close();
 ?>
 
@@ -91,6 +99,9 @@
             <a href="recommendation.php">
                 <button type="submit">Return to recommendation page</button>
             </a>
+            <a id = "rate" href="rating.php">
+                <button type="submit">&#11088;Rate US!&#11088;</button>
+            </a>
             <a id = "loc"><?php echo $loc?></a>
         </div>
         <div id = "container">
@@ -102,29 +113,15 @@
                 <ul id="places"></ul>
             </div>
         </div> 
-        <div class="chat">
-           
-            
-
-            <form method="post" >
-                <div class="chat-input">
-                    <input type="text" id="chatbox" name="chatbox" placeholder="Type your message...">
-
-                    <button onclick="addchat()">Post</button>
-                    <hr style="height:2px;border-width:0;color:black;background-color:black">
-                </div>
-            </form>
-
-            <!-- <h1>Guest: Toronto's good place!</h1> -->
-            <h3>            
-
-                 <?php echo $chat_messages; ?>
-
-            </h3>
-
-
-
-        </div>
+        <form class = "chat" method="post" >
+            <div class="chat-input">
+                <p style = "margin-left:25px;font-family:'Times New Roman',Times, serif;font-size:25px;">Share your next locations and talk to others!</p>
+                <input type="text" id="chatbox" name="chatbox" placeholder="Type your message...">
+                <button onclick="addchat()">Post</button>
+                <hr style="height:2px;border-width:0;color:black;background-color:black">
+            </div>
+            <p><?php echo $msg?></p>
+        </form>
         <hr>
         <div class="footer">
             <h2>Intern Limited, 2024 </h2>
