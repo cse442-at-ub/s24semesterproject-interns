@@ -6,12 +6,12 @@ $data = [
     
     'European' => 'French, English, Swedish, Ukranian',
     'Asian' => 'Chinese, Korean, Indian, Japanese',
-    'Middle east' => 'Turkish, Yemenesem Irqi, Syrian',
-    'Americans' => 'United State, Cuba, Brazil, Mexico',
+    'Middle East' => 'Turkish, Yemenesem Irqi, Syrian',
+    'American' => 'United State, Cuba, Brazil, Mexico',
     
     'History' => 'Roman, Dinosaur, American, World',
     'Chilling' => 'Beach, Theater, water park, Spa, Juice bar, Dave and buster, Thriller park, Movie, Trampoline park',
-    'Extreme sport' => 'Skydiving, skiing, Snow boarding, racing',
+    'Extreme Sport' => 'Skydiving, skiing, Snow boarding, racing',
     'Recreational' => 'Dave and buster, Thriller park, Movie, Trampoline park',
     
     'Wearable items' => 'Clothes, jewelery, Bags, shoes',
@@ -30,16 +30,12 @@ $result = [];
 foreach ($data as $key => $value) {
     $result[$key] = explode(', ', $value);
 }
+session_start();
+$d = $_SESSION['recommend'];
 
-$d = $_GET['data'];
-$d = json_decode(urldecode($list_encoded), true);
-
-
+//$d = $_GET['result']; // change this to be a list
+//$d = unserialize(urldecode($d));
 ?>
-
-
-
-
 
 
 <!DOCTYPE html>
