@@ -49,13 +49,16 @@ body {
     color: rgb(197, 212, 240);
   }
   
-  
+  #loc{
+    font-size: 1.2rem;
+    color: black;
+    margin-left:25px;
+  }
   #container {
     height: 50%;
     display: flex;
   }
   .chat {
-    text-align:center;
     flex: 0;
     width: 75%; 
     height: 650px; 

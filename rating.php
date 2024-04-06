@@ -27,18 +27,35 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (!empty($_POST['chatbox'])) {
-            $message = $_POST['chatbox'];
-            $name = "Guest"; 
-            $sql_insert_message = "INSERT INTO comments_db (Name, message) VALUES ('$name', '$message')";
-            if ($conn->query($sql_insert_message) === TRUE) {
-                
-            } else {
-                echo "Error adding message: " . $conn->error . "<br>";
-            }
+        $message = $_POST['chatbox'];
+        $rating = intval($_POST['rating']);
+        $guest = "Guest"; 
+
+            
+            #$sql_insert_message = "INSERT INTO Rating_Message (name, message) VALUES ('$name', '$message')";
+         $sql_insert_message = "INSERT INTO Rating_Message (Name,message,value) VALUES ('$guest', '$message', '$rating')";
+            
+        if ($conn->query($sql_insert_message) === TRUE) {
+        } else {
+            echo "Error: " . $mysqli->error;
         }
     }
+    $sql2 = "SELECT * FROM `Rating_Message` ";
+    $result = mysqli_query($conn, $sql2); 
+    
+    #$row = mysqli_fetch_array($result);
+    #while($row = mysqli_fetch_assoc($result)) {
+    #    $name =$row["Name"];
+    #    $message = $row["message"];
 
+    #}
+    $msg = "";
+    while ($row = mysqli_fetch_array($result)) {
+        $name =$row["Name"];
+        $message = $row["message"];
+        $rate = $row["value"];
+        $msg = $msg ."<br>" . $name . ": " . $message . "(" . $rate . "/5) &#11088;";
+    }
     $conn->close();
 ?>
 
@@ -67,16 +84,15 @@
         </div>
         <div id = "container">
         </div> 
-        <div class="chat">
-            <div id="chat-messages">   
-            </div>
+        <form class = "chat" method="post" >
             <div class="chat-input">
-                <input type="text" id="chatbox" placeholder="Type your Suggestion...">
-                &#11088;Rating:<input type = "number" placeholder="5" min="1" max="5">
-                <button onclick="addchat()">Post</button>
+                <input type="text" id="chatbox" name="chatbox" placeholder="Type your Suggestion...">
+                &#11088;Rating:<input type = "number" id = "rating" name = "rating" placeholder="5" min="1" max="5">
+                <button >Post</button>
                 <hr style="height:2px;border-width:0;color:black;background-color:black">
             </div>
-        </div>
+            <p id = "loc"><?php echo $msg?></p>
+        </form>
         <hr>
         <div class="footer">
             <h2>Intern Limited, 2024 </h2>

@@ -5,7 +5,6 @@
      } else {
      }
 
-    //$sql = "SELECT id, destined_location, user_city FROM user_data";
 
     $sql2 = "SELECT * FROM user_data";
     $result = mysqli_query($mysqli, $sql2); 
@@ -42,8 +41,6 @@
     $mysqli->close();
 
 
-
-    //
 ?>
 
 
@@ -117,7 +114,7 @@
             <div class="chat-input">
                 <p style = "margin-left:25px;font-family:'Times New Roman',Times, serif;font-size:25px;">Share your next locations and talk to others!</p>
                 <input type="text" id="chatbox" name="chatbox" placeholder="Type your message...">
-                <button onclick="addchat()">Post</button>
+                <button >Post</button>
                 <hr style="height:2px;border-width:0;color:black;background-color:black">
             </div>
             <p><?php echo $msg?></p>

@@ -17,6 +17,11 @@ body {
     margin-right:25px;
     margin-bottom:50px;
   }
+  #loc2{
+    font-size: 1.2rem;
+    color: black;
+    margin-left:25px;
+  }
   .state{
     margin-top:0px;
     text-align:right;
