@@ -1,3 +1,4 @@
+
 <?php
      $mysqli = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
      if ($mysqli->connect_error) {
@@ -38,6 +39,28 @@
             }
         }
     }
+
+    $conn->close();
+?>
+
+<?php
+    $conn =  new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if (!empty($_POST['chatbox'])) {
+        $message = $mysqli->real_escape_string($_POST['chatbox']);
+        $rating = intval($_POST['rating']);
+        $guest = "Guest"; 
+        
+        $sql_insert_message = "INSERT INTO Rating_Message (guest, comments, rating) VALUES ('$guest', '$message', $rating)";
+        
+        if ($mysqli->query($sql_insert_message) === TRUE) {
+        } else {
+            echo "Error: " . $mysqli->error;
+        }
+    } 
 
     $conn->close();
 ?>
