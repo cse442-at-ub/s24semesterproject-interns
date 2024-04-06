@@ -62,6 +62,38 @@
             color: white;
         }
     </style>
+    <?php
+            //$dbname = "cse442_2024_spring_team_f_db";
+            $dbname = "my442db";
+            $conn = new mysqli("", "root", "", $dbname);
+            $current = "SELECT data_percent FROM mydb";
+            $value = $conn->query($current);
+            $history = 0;
+            $recreate = 0;
+            $sport = 0;
+            $relax = 0;
+            if ($value->num_rows > 0){
+                while($row = $value->fetch_assoc()){
+                    $dict = json_decode($row["data_percent"],true);
+                    $history = $dict["history"];
+                    $recreate = $dict["recreate"];
+                    $sport = $dict["sport"];
+                    $relax = $dict["relax"];
+                }
+            }
+            $sum = $history + $recreate + $sport + $relax;
+            if ($sum == 0){
+                $html_his = "0%";
+                $html_recre = "0%";
+                $html_sport = "0%";
+                $html_relax = "0%";
+            }else{
+                $html_his = strval(round(($history/$sum)*100, 2) . '%');
+                $html_recre = strval(round(($recreate/$sum)*100, 2) . '%');
+                $html_sport = strval(round(($sport/$sum)*100, 2) . '%');
+                $html_relax = strval(round(($relax/$sum)*100, 2) . '%');
+            }
+    ?>
     <main>
         <div class="container">
             <form method="post" action="quizpage.php"> <!-- Modified form tag -->
@@ -70,13 +102,13 @@
                 </p>
                 <ul class="choices">
                     <li><input name="site_choice" type="radio" onclick="recordClick('option1')" value="History" />History</li>
-                    <p>Selected percentage: <span id="percentage">percentage1</span></p>
+                    <?php echo "Selected percentage: $html_his<br>";?>
                     <li><input name="site_choice" type="radio" onclick="recordClick('option2')" value="Recreational" />Recreational</li>
-                    <p>Selected percentage: <span id="percentage">percentage2</span></p>
-                    <li><input name="site_choice" type="radio" onclick="recordClick('option3')" value="Extrme Sport" />Extrme Sport</li>
-                    <p>Selected percentage: <span id="percentage">percentage3</span></p>
-                    <li><input name="site_choice" type="radio" onclick="recordClick('option4')" value="Relaxing" />Relaxing</li>
-                    <p>Selected percentage: <span id="percentage">percentage4</span></p>
+                    <?php echo "Selected percentage: $html_recre<br>";?>
+                    <li><input name="site_choice" type="radio" onclick="recordClick('option3')" value="Extreme Sport" />Extreme Sport</li>
+                    <?php echo "Selected percentage: $html_sport<br>";?>
+                    <li><input name="site_choice" type="radio" onclick="recordClick('option4')" value="Chilling" />Chilling</li>
+                    <?php echo "Selected percentage: $html_relax<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
             </form>

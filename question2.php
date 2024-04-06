@@ -62,6 +62,39 @@
             color: white;
         }
     </style>
+    <?php
+        //$dbname = "cse442_2024_spring_team_f_db";
+        $dbname = "my442db";
+        $conn = new mysqli("", "root", "", $dbname);
+        $current = "SELECT data_percent FROM mydb";
+        $value = $conn->query($current);
+        $food = 0;
+        $experience = 0;
+        $shopping = 0;
+        $study = 0;
+        if ($value->num_rows > 0){
+            while($row = $value->fetch_assoc()){
+                $dict = json_decode($row["data_percent"],true);
+                $food = $dict["food"];
+                $experience = $dict["experience"];
+                $shopping = $dict["shopping"];
+                $study = $dict["study"];
+            }
+        }
+        $sum = $food + $experience + $shopping + $study;
+        if ($sum == 0){
+            $html_food = "0%";
+            $html_ex = "0%";
+            $html_shop = "0%";
+            $html_study = "0%";
+        }else{
+            $html_food = strval(round(($food/$sum)*100,2) . '%');
+            $html_ex = strval(round(($experience/$sum)*100,2) . '%');
+            $html_shop = strval(round(($shopping/$sum)*100,2) . '%');
+            $html_study = strval(round(($study/$sum)*100 ,2). '%');
+        }
+
+    ?>
     <main>
         <div class="container">
             <form method="post" action="quizpage.php"> 
@@ -70,13 +103,13 @@
                 </p>
                 <ul class="choices">
                     <li><input name="purpose_choice" type="radio" onclick="recordClick('option1')" value="For Food" />For Food</li>
-                    <p>Selected percentage: <span id="percentage">percentage1</span></p>
+                    <?php echo "Selected percentage: $html_food<br>";?>
                     <li><input name="purpose_choice" type="radio" onclick="recordClick('option2')" value="For the experience" />For the experience</li>
-                    <p>Selected percentage: <span id="percentage">percentage2</span></p>
+                    <?php echo "Selected percentage: $html_ex<br>";?>
                     <li><input name="purpose_choice" type="radio" onclick="recordClick('option3')" value="For Shopping" />For Shopping</li>
-                    <p>Selected percentage: <span id="percentage">percentage3</span></p>
+                    <?php echo "Selected percentage: $html_shop<br>";?>
                     <li><input name="purpose_choice" type="radio" onclick="recordClick('option4')" value="For Academic Purpose" />For Academic Purpose</li>
-                    <p>Selected percentage: <span id="percentage">percentage4</span></p>
+                    <?php echo "Selected percentage: $html_study<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
             </form>
