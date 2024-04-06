@@ -1,0 +1,77 @@
+body {
+    height: 50%;
+    margin: 0;
+    padding: 0;
+    background-color: #C3B1E1;
+  }
+  #loc{
+    font-size: 1.2rem;
+    color: white;
+    margin-right:25px;
+    margin-bottom:50px;
+  }
+  .state{
+    margin-top:0px;
+    text-align:right;
+  }
+  .navbar{
+    background-color: black;
+    position: fixed; 
+    overflow:visible;
+    height: 80px;
+    width: 100%; 
+    z-index:1;
+  }
+  .footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height:100px;
+    background-color: black;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-align: center;
+  }
+  button {
+    width: 20%;
+    margin-top: 10px;
+    margin-left:25px;
+    padding: 1rem;
+    flex-grow: 0;
+    cursor: pointer;
+    background: blue;
+    font-size: 1.2rem;
+    color: white;
+    border: medium;
+  }
+  button:hover {
+    color: rgb(197, 212, 240);
+  }
+  
+  #loc{
+    font-size: 1.2rem;
+    color: black;
+    margin-left:25px;
+  }
+  #container {
+    height: 50%;
+    display: flex;
+  }
+  .chat {
+    flex: 0;
+    width: 75%; 
+    height: 650px; 
+    margin-top : 150px;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 5px;
+    background-color: #FFFAF1;
+  }
+  
+  #chatbox {
+    width: 700px;
+    margin-left: 25px;
+    border-top: 1px solid #C6BFB6;
+    padding: 10px;
+  }

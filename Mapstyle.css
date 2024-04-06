@@ -17,6 +17,11 @@ body {
     margin-right:25px;
     margin-bottom:50px;
   }
+  #loc2{
+    font-size: 1.2rem;
+    color: black;
+    margin-left:25px;
+  }
   .state{
     margin-top:0px;
     text-align:right;
@@ -71,6 +76,24 @@ body {
   #sidebar {
     display: flex;
     flex-direction: column;
+  }
+  
+  .chat {
+    display: flex;
+    flex: 1;
+    width: 1000px; 
+    height: 650px; 
+    margin-top: 25px;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: #FFFAF1;
+  }
+  
+  #chatbox {
+    width: 700px;
+    margin-left: 25px;
+    border-top: 1px solid #C6BFB6;
+    padding: 10px;
   }
   
   h2 {

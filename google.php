@@ -5,7 +5,6 @@
      } else {
      }
 
-    //$sql = "SELECT id, destined_location, user_city FROM user_data";
 
     $sql2 = "SELECT * FROM user_data";
     $result = mysqli_query($mysqli, $sql2); 
@@ -17,9 +16,67 @@
         $city = $row["user_city"];
     }
     $loc = $city . ", " . $state;
+
+
+
+
+    $sql3 = "SELECT * FROM comments_db";
+
+    $result = mysqli_query($mysqli, $sql3);
+
+    $chat_messages = ""; 
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $id = $row["Name"];
+        $message = $row["message"];
+        $chat_messages .= "$id: $message<br>";
+    }
+
+
+
+
+
+
+
     $mysqli->close();
 
+
 ?>
+
+
+
+
+<?php
+    $conn =  new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (!empty($_POST['chatbox'])) {
+            $message = $_POST['chatbox'];
+            $name = "Guest"; 
+            $sql_insert_message = "INSERT INTO comments_db (Name, message) VALUES ('$name', '$message')";
+            if ($conn->query($sql_insert_message) === TRUE) {
+                
+            } else {
+                echo "Error adding message: " . $conn->error . "<br>";
+            }
+        }
+    }
+    $sql2 = "SELECT * FROM `comments_db` ";
+    $result = mysqli_query($conn, $sql2); 
+    
+    $msg = "";
+    while ($row = mysqli_fetch_array($result)) {
+        $name =$row["Name"];
+        $message = $row["message"];
+        $msg = $msg ."<br>" . $name . ": " . $message ;
+    }
+    $conn->close();
+?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -33,11 +90,14 @@
             <a href="welcome.php">
                 <button type="submit">Return to welcome page</button>
             </a>  
-            <a href="question1.html">
+            <a href="local.html">
                 <button type="submit">Retake quiz</button>
             </a>
             <a href="recommendation.php">
                 <button type="submit">Return to recommendation page</button>
+            </a>
+            <a id = "rate" href="rating.php">
+                <button type="submit">&#11088;Rate US!&#11088;</button>
             </a>
             <a id = "loc"><?php echo $loc?></a>
         </div>
@@ -50,6 +110,16 @@
                 <ul id="places"></ul>
             </div>
         </div> 
+        <form class = "chat" method="post" >
+            <div class="chat-input">
+                <p style = "margin-left:25px;font-family:'Times New Roman',Times, serif;font-size:25px;">Share your next locations and talk to others!</p>
+                <input type="text" id="chatbox" name="chatbox" placeholder="Type your message...">
+                <button >Post</button>
+                <hr style="height:2px;border-width:0;color:black;background-color:black">
+            </div>
+            <p><?php echo $msg?></p>
+        </form>
+        <hr>
         <div class="footer">
             <h2>Intern Limited, 2024 </h2>
             <a href ="https://cloud.google.com/maps-platform/terms/"> Term of Service</a>
