@@ -62,21 +62,54 @@
             color: white;
         }
     </style>
+    <?php
+            //$dbname = "cse442_2024_spring_team_f_db";
+            $dbname = "my442db";
+            $conn = new mysqli("", "root", "", $dbname);
+            $current = "SELECT data_percent FROM mydb";
+            $value = $conn->query($current);
+            $museum = 0;
+            $book = 0;
+            $site = 0;
+            $nature = 0;
+            if ($value->num_rows > 0){
+                while($row = $value->fetch_assoc()){
+                    $dict = json_decode($row["data_percent"],true);
+                    $museum = $dict["museum"];
+                    $book = $dict["book"];
+                    $site = $dict["site"];
+                    $nature = $dict["nature"];
+                }
+            }
+            $sum = $museum + $book + $site + $nature;
+            if ($sum == 0){
+                $html_museum = "0%";
+                $html_book = "0%";
+                $html_site = "0%";
+                $html_nature ="0%";
+            }
+            else{
+                $html_museum = strval(round(($museum/$sum)*100, 2) . '%');
+                $html_book = strval(round(($book/$sum)*100, 2) . '%');
+                $html_site = strval(round(($site/$sum)*100, 2) . '%');
+                $html_nature = strval(round(($nature/$sum)*100, 2) . '%');
+            }
+    ?>
     <main>
         <div class="container">
             <p>
                 <label>What type of study do you like to do?</label>
             </p>
-            <form method="post" action="process.php">
+            <form method="post" action="quizpage.php">
                 <ul class="choices">
-                    <li><input name="choice" type="radio" onclick="recordClick('option1')" value="Visit Museums to learn about history" />Visit Museums to learn about history</li>
-                    <p>Selected percentage: <span id="percentage">percentage1</span></p>
-                    <li><input name="choice" type="radio" onclick="recordClick('option2')" value="Visit Religious insitute to learn religion history" />Visit Religious insitute to learn religion history</li>
-                    <p>Selected percentage: <span id="percentage">percentage2</span></p>
+                    <li><input name="choice" type="radio" onclick="recordClick('option1')" value="Visit museums to learn about history" />Visit Museums to learn about history</li>
+                    <?php echo "Selected percentage: $html_museum<br>";?>
+                    <li><input name="choice" type="radio" onclick="recordClick('option2')" value="Visit the nature to see the history of our planet" />Visit the nature to see the history of our planet</li>
+                    <?php echo "Selected percentage: $html_book<br>";?>
                     <li><input name="choice" type="radio" onclick="recordClick('option3')" value="Visit historical sites to live the moment" />Visit historical sites to live the moment</li>
-                    <p>Selected percentage: <span id="percentage">percentage3</span></p>
-                    <li><input name="choice" type="radio" onclick="recordClick('option4')" value="Visit Public insitute for hisorical archives and local history" />Visit Public insitute for hisorical archives and local history</li>
-                    <p>Selected percentage: <span id="percentage">percentage4</span></p>
+                    <?php echo "Selected percentage: $html_site<br>";?>
+                    <li><input name="choice" type="radio" onclick="recordClick('option4')" value="Visit public institution" />Visit public institution</li>
+                    <?php echo "Selected percentage: $html_nature<br>";?>
                 </ul>
                 <input type="submit" value="Submit" />
             </form>

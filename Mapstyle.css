@@ -87,6 +87,7 @@ body {
     border-radius: 5px;
     flex-direction: column;
     background-color: #FFFAF1;
+    overflow-y: auto;
   }
   
   #chatbox {

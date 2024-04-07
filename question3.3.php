@@ -62,6 +62,38 @@
             color: white;
         }
     </style>
+    <?php
+            //$dbname = "cse442_2024_spring_team_f_db";
+            $dbname = "my442db";
+            $conn = new mysqli("", "root", "", $dbname);
+            $current = "SELECT data_percent FROM mydb";
+            $value = $conn->query($current);
+            $wear = 0;
+            $elect = 0;
+            $grocery = 0;
+            $necess = 0;
+            if ($value->num_rows > 0){
+                while($row = $value->fetch_assoc()){
+                    $dict = json_decode($row["data_percent"],true);
+                    $wear = $dict["wear"];
+                    $elect = $dict["elect"];
+                    $grocery = $dict["grocery"];
+                    $necess = $dict["necess"];
+                }
+            }
+            $sum = $wear + $elect + $grocery + $necess;
+            if ($sum == 0){
+                $html_wear = "0%";
+                $html_elect = "0%";
+                $html_gro = "0%";
+                $html_necess = "0%";
+            }else{
+                $html_wear = strval(round(($wear/$sum)*100, 2) . '%');
+                $html_elect = strval(round(($elect/$sum)*100, 2) . '%');
+                $html_gro = strval(round(($grocery/$sum)*100 ,2). '%');
+                $html_necess = strval(round(($necess/$sum)*100,2) . '%');
+            }
+    ?>
     <main>
         <div class="container">
             <form method="post" action="quizpage.php"> 
@@ -70,13 +102,13 @@
                 </p>
                 <ul class="choices">
                     <li><input name="shopping_choice" type="radio" onclick="recordClick('option1')" value="Wearable items" />Wearable items</li>
-                    <p>Selected percentage: <span id="percentage">percentage1</span></p>
+                    <?php echo "Selected percentage: $html_wear<br>";?>
                     <li><input name="shopping_choice" type="radio" onclick="recordClick('option2')" value="Electronics" />Electronics</li>
-                    <p>Selected percentage: <span id="percentage">percentage2</span></p>
+                    <?php echo "Selected percentage: $html_elect<br>";?>
                     <li><input name="shopping_choice" type="radio" onclick="recordClick('option3')" value="Grocery" />Grocery</li>
-                    <p>Selected percentage: <span id="percentage">percentage3</span></p>
+                    <?php echo "Selected percentage: $html_gro<br>";?>
                     <li><input name="shopping_choice" type="radio" onclick="recordClick('option4')" value="Necessities" />Necessities</li>
-                    <p>Selected percentage: <span id="percentage">percentage4</span></p>
+                    <?php echo "Selected percentage: $html_necess<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
             </form>

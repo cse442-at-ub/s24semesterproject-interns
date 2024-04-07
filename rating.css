@@ -67,6 +67,7 @@ body {
     margin-right:auto;
     border-radius: 5px;
     background-color: #FFFAF1;
+    overflow-y: auto;
   }
   
   #chatbox {
