@@ -90,7 +90,7 @@
             <a href="welcome.php">
                 <button type="submit">Return to welcome page</button>
             </a>  
-            <a href="local.html">
+            <a href="quizpage.php">
                 <button type="submit">Retake quiz</button>
             </a>
             <a href="recommendation.php">
