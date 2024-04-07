@@ -61,8 +61,39 @@
                 color: white;
             }
         </style>
+        <?php
+            //$dbname = "cse442_2024_spring_team_f_db";
+            $dbname = "my442db";
+            $conn = new mysqli("", "root", "", $dbname);
+            $current = "SELECT data_percent FROM mydb";
+            $value = $conn->query($current);
+            $european = 0;
+            $asian = 0;
+            $middle = 0;
+            $usa = 0;
+            if ($value->num_rows > 0){
+                while($row = $value->fetch_assoc()){
+                    $dict = json_decode($row["data_percent"],true);
+                    $european = $dict["european"];
+                    $asian = $dict["asian"];
+                    $middle = $dict["middle"];
+                    $usa = $dict["usa"];
+                }
+            }
+            $sum = $european + $asian + $middle + $usa;
+            if ($sum == 0){
+                $html_european = "0%";
+                $html_asian = "0%";
+                $html_middle ="0%";
+                $html_usa = "0%";
+            }else{
+                $html_european = strval(round(($european/$sum)*100,2) . '%');
+                $html_asian = strval(round(($asian/$sum)*100,2) . '%');
+                $html_middle = strval(round(($middle/$sum)*100, 2) . '%');
+                $html_usa = strval(round(($usa/$sum)*100, 2) . '%');
+            }
+        ?>
     </header>
-
     <main>
         <div class="container">
             <form method="post" action="quizpage.php"> <!-- Modified form tag -->
@@ -71,13 +102,13 @@
                 </p>
                 <ul class="choices">
                     <li><input name="cuisine_choice" type="radio" onclick="recordClick('option1')" value="European" />European</li>
-                    <p>Selected percentage: <span id="percentage">percentage1</span></p>
+                    <?php echo "Selected percentage: $html_european<br>";?>
                     <li><input name="cuisine_choice" type="radio" onclick="recordClick('option2')" value="Asian" />Asian</li>
-                    <p>Selected percentage: <span id="percentage">percentage2</span></p>
+                    <?php echo "Selected percentage: $html_asian<br>";?>
                     <li><input name="cuisine_choice" type="radio" onclick="recordClick('option3')" value="Middle East" />Middle East</li>
-                    <p>Selected percentage: <span id="percentage">percentage3</span></p>
+                    <?php echo "Selected percentage: $html_middle<br>";?>
                     <li><input name="cuisine_choice" type="radio" onclick="recordClick('option4')" value="American" />American</li>
-                    <p>Selected percentage: <span id="percentage">percentage4</span></p>
+                    <?php echo "Selected percentage: $html_usa<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
             </form>

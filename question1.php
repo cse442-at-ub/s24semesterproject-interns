@@ -63,17 +63,42 @@
             color: white;
         }
     </style>
+    <?php
+        //$dbname = "cse442_2024_spring_team_f_db";
+        $dbname = "my442db";
+        $conn = new mysqli("", "root", "", $dbname);
+        $current = "SELECT data_percent FROM mydb";
+        $value = $conn->query($current);
+        $yes = 0;
+        $no = 0;
+        $sum = 0;
+        if ($value->num_rows > 0){
+            while($row = $value->fetch_assoc()){
+                $dict = json_decode($row["data_percent"],true);
+                $yes = $dict["yes"];
+                $no = $dict["no"];
+            }
+        }
+        $sum = $yes + $no;
+        if ($sum == 0){
+            $html_yes = "0%";
+            $html_no = "0%";
+        }else{
+            $html_yes = strval(round(($yes/$sum)*100, 2) . '%');
+            $html_no = strval(round(($no/$sum)*100, 2) . '%');
+        }
+    ?>
     <main>
         <div class="container">
-            <form method="post" action="quizpage.php"> 
+        <form method="post" action="quizpage.php"> 
                 <p class="question">
                     <label>Do you like alcohol?</label>
                 </p>
                 <ul class="choices">
-                    <li><input name="alcohol_choice" type="radio" onclick="recordClick('option1')" value="Yes" />Yes</li> 
-                    <p>Selected percentage: <span id=percentage>percentage1</span></p>
+                    <li><input name="alcohol_choice" type="radio" onclick="recordClick('option1')" value="Yes" />Yes</li>
+                    <?php echo "Selected percentage: $html_yes<br>";?>
                     <li><input name="alcohol_choice" type="radio" onclick="recordClick('option2')" value="No" />No</li>
-                    <p>Selected percentage: <span id=percentage>percentage2</span></p>
+                    <?php echo "Selected percentage: $html_no<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
             </form>
