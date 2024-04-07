@@ -64,9 +64,9 @@
     </style>
     <?php
             //$dbname = "cse442_2024_spring_team_f_db";
-            $dbname = "my442db";
-            $conn = new mysqli("", "root", "", $dbname);
-            $current = "SELECT data_percent FROM mydb";
+            $dbname = "interns_cse442";
+            $conn = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
+            $current = "SELECT data_percent FROM interns_cse442";
             $value = $conn->query($current);
             $wear = 0;
             $elect = 0;

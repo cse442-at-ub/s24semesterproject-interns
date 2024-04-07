@@ -1,16 +1,14 @@
 <?php
 $keyword = [];
-$servername = "";
-$username = "root";
-$password = "";
-//$dbname = "cse442_2024_spring_team_f_db";
-$dbname = "my442db";
-$tableName = "mydb";
+$tableName = "interns_cse442";
 
-//$recommend = [];
+$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
+if ($mysqli->connect_error) {
+die("Connection failed: " .  $mysqli->connect_error);
+} else {
+}
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-#$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "weitianw", '50430232', "cse442_2024_spring_team_f_db");
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
