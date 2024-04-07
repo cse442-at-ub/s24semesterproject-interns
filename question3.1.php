@@ -93,6 +93,7 @@
                 $html_usa = strval(round(($usa/$sum)*100, 2) . '%');
             }
         ?>
+        
     </header>
     <main>
         <div class="container">
