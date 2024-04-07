@@ -51,3 +51,20 @@ for ($i = 0; $i < 6; $i++) {
 // Close the table
 echo "</table>";
 ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        </style>
+        <link rel="stylesheet" type="text/css" href="./Mapstyle.css">
+    </head>
+    <body>
+        <button class="next-button" onclick = "goToHome()">back to home page</button>
+        <script>
+            function goToHome() {
+                window.location.href = "welcome.php";
+        }
+        </script>
+    </body>
+</html>

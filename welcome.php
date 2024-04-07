@@ -103,13 +103,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- <input type="text" id="city" class="answer-box"> -->
                 <input type="text" name="user-city" id="user-city" class="answer-box">
             </div>
-            <button class="next-button" onclick="goToQuiz()">Next</button>
+            <form class = "next-button">
+                <input type="submit" value="Next to our quiz!" />
+            </form>
+
+            <button class="next-button" onclick = "goToCalendar()">Go To Calendar</button>
         </form>
     </div>
 
     <script>
-        function goToQuiz() {
-            window.location.href = "quiz.html";
+        function goToCalendar() {
+            window.location.href = "calendar.php";
         }
     </script>
 </body>
