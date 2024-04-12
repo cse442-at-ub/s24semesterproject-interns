@@ -57,7 +57,7 @@ echo "</table>";
     <head>
         <style>
         </style>
-        <link rel="stylesheet" type="text/css" href="./Mapstyle.css">
+        <link rel="stylesheet" type="text/css" href="./Calendar.css">
     </head>
     <body>
         <button class="next-button" onclick = "goToHome()">back to home page</button>

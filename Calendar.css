@@ -1,0 +1,49 @@
+body{
+    background-color: #c5b8d9;
+}
+.calendar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #E5B8CD;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%; 
+    max-width: 50000px; 
+    margin-top: 20px; 
+    background-color: #FFFAF1;
+}
+
+th {
+    padding: 15px;
+    background-color: #FDDA9D;
+}
+
+
+td {
+    padding: 15px;
+    text-align: center;
+}
+
+
+td.current-day {
+    background-color: #93AF6E;
+}
+
+
+.next-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #93AF6E;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    background-color: #93AF6E;
+}
