@@ -79,6 +79,7 @@
                 $experience = $dict["experience"];
                 $shopping = $dict["shopping"];
                 $study = $dict["study"];
+                //for the next page answer
             }
         }
         $sum = $food + $experience + $shopping + $study;
