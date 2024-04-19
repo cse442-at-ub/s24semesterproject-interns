@@ -89,6 +89,7 @@
             $html_yes = strval(round(($yes/$sum)*100, 2) . '%');
             $html_no = strval(round(($no/$sum)*100, 2) . '%');
         }
+
     ?>
     <main>
         <div class="container">
@@ -103,6 +104,7 @@
                     <?php echo "Selected percentage: $html_no<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
+                <input type="submit" value="BACK" />
             </form>
         </div>
           

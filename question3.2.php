@@ -111,6 +111,7 @@
                     <?php echo "Selected percentage: $html_relax<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
+                <input type="submit" value="BACK" />
             </form>
         </div>
     </main>

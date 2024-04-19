@@ -111,6 +111,7 @@
                     <?php echo "Selected percentage: $html_nature<br>";?>
                 </ul>
                 <input type="submit" value="Submit" />
+                <input type="submit" value="BACK" />
             </form>
         </div>
         

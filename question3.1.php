@@ -112,6 +112,7 @@
                     <?php echo "Selected percentage: $html_usa<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
+                <input type="submit" value="BACK" />
             </form>
         </div>
     </main>

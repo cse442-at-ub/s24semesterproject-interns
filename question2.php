@@ -94,7 +94,6 @@
             $html_shop = strval(round(($shopping/$sum)*100,2) . '%');
             $html_study = strval(round(($study/$sum)*100 ,2). '%');
         }
-
     ?>
     <main>
         <div class="container">
@@ -113,6 +112,7 @@
                     <?php echo "Selected percentage: $html_study<br>";?>
                 </ul>
                 <input type="submit" value="NEXT" />
+                <input type="submit" value="BACK" />
             </form>
         </div>
     </main>
