@@ -1,14 +1,16 @@
 <?php
 $keyword = [];
-$tableName = "interns_cse442";
+$servername = "";
+$username = "root";
+$password = "";
+#$dbname = "cse442_2024_spring_team_f_db";
+$dbname = "my442db";
+$tableName = "mydb";
+#$tableName = "interns_cse442";
+//$recommend = [];
 
-$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
-if ($mysqli->connect_error) {
-die("Connection failed: " .  $mysqli->connect_error);
-} else {
-}
-
-
+$conn = new mysqli($servername, $username, $password, $dbname);
+#$conn = new mysqli("oceanus.cse.buffalo.edu:3306", "weitianw", '50430232', "cse442_2024_spring_team_f_db");
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -52,9 +54,18 @@ else{
 }
 // question1
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $a=($_POST['alcohol_choice']);
+    session_start();
+    
+    if ($_SESSION['question1']===False){
+        //$_SESSION['error_message'] = "You have not selected any options yet!";
+        header("Location:question1.php");
+    }
+    
     if (isset($_POST["alcohol_choice"])) {
         //echo "hello";
+        session_start();
+        $_SESSION['question1']=True;
+        $a=($_POST['alcohol_choice']);
         $current = "SELECT data_percent FROM $tableName";
         $value = $conn->query($current);
         $yes = 0;
@@ -100,9 +111,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
     // question2
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $a=($_POST['purpose_choice']);
+        if ($_SESSION['question2']===False && $_SESSION['question1']===True){
+            //$_SESSION['error_message'] = "You have not selected any options yet!";
+            header("Location:question2.php");
+        }
     if (isset($_POST["purpose_choice"])) {
         //echo "hello";
+        session_start();
+        $_SESSION['question2']=True;
+        $a=($_POST['purpose_choice']);
         $current = "SELECT data_percent FROM $tableName";
         $value = $conn->query($current);
         $food = 0;
@@ -146,29 +163,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Error updating record: " . $conn->error;
             }
         }
+        if ($a == "For Food") {
+            session_start();
+            $_SESSION['question3.1']=True;
+            header('Location:question3.1.php');
+            exit;
+        }
+        elseif($a == "For the experience"){
+            session_start();
+            $_SESSION['question3.2']=True;
+            header('Location:question3.2.php');
+            exit;
+        }
+        elseif($a == "For Shopping"){
+            session_start();
+            $_SESSION['question3.3']=True;
+            header('Location:question3.3.php');
+            exit;
+        }
+        elseif($a == "For Academic Purpose"){
+            session_start();
+            $_SESSION['question3.4']=True;
+            header('Location:question3.4.php');
+            exit;
+        }
     }
     
-    if ($a == "For Food") {
-        header('Location:question3.1.php');
-        exit;
-    }
-    elseif($a == "For the experience"){
-        header('Location:question3.2.php');
-        exit;
-    }
-    elseif($a == "For Shopping"){
-        header('Location:question3.3.php');
-        exit;
-    }
-    elseif($a == "For Academic Purpose"){
-        header('Location:question3.4.php');
-        exit;
-    }
     }
 
     // question3.1
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SESSION['question3.1']===False && $_SESSION['question2']===True && $_SESSION['question1']===True){
+            header("Location:question3.1.php");
+        }
         if (isset($_POST["cuisine_choice"])) {
+            session_start();
+            $_SESSION['question3.1']=True;
             $a=($_POST['cuisine_choice']);
             echo "hello";
             $current = "SELECT data_percent FROM $tableName";
@@ -226,9 +256,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // question3.2 "history"=>0, "recreate"=>0, "sport"=>0, "relax"=>0
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $a=($_POST['site_choice']);
+        if ($_SESSION['question3.2']===False && $_SESSION['question2']===True 
+            && $_SESSION['question1']===True){
+            //$_SESSION['error_message'] = "You have not selected any options yet!";
+            header("Location:question3.2.php");
+        }
         if (isset($_POST["site_choice"])) {
-            //echo "hello";
+            
+            $a=($_POST['site_choice']);
             $recommend[] = $a;
             $current = "SELECT data_percent FROM $tableName";
             $value = $conn->query($current);
@@ -282,9 +317,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // question3.3 "wear"=>0, "elect"=>0, "grocery"=>0, "necess"=>0
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $a=($_POST['shopping_choice']);
+        if ($_SESSION['question3.3']===False && $_SESSION['question2']===True && $_SESSION['question1']===True){
+            header("Location:question3.3.php");
+        }
         if (isset($_POST["shopping_choice"])) {
             //echo "hello";
+            $a=($_POST['shopping_choice']);
             $recommend[] = $a;
             $current = "SELECT data_percent FROM $tableName";
             $value = $conn->query($current);
@@ -337,9 +375,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // question3.4 "museum"=>0, "book"=>0, "site"=>0, "nature"=>0
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $a=($_POST['choice']);
+        if ($_SESSION['question3.4']===False && $_SESSION['question2']===True && $_SESSION['question1']===True){
+            header("Location:question3.4.php");
+        }
         if (isset($_POST["choice"])) {
-            echo "hello";
+            //echo "hello";
+            $a=($_POST['choice']);
             $recommend[] = $a;
             $current = "SELECT data_percent FROM $tableName";
             $value = $conn->query($current);

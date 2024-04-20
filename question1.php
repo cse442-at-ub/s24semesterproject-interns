@@ -13,8 +13,6 @@
             <h1>Question 1</h1>
         </div>
     </header>
-
-    
     <style>
         body {
             font-family: 'Times New Roman', Times, serif, sans-serif;
@@ -67,9 +65,10 @@
     </style>
     <?php
         //$dbname = "cse442_2024_spring_team_f_db";
-        $dbname = "interns_cse442";
-        $conn = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
-        $current = "SELECT data_percent FROM interns_cse442";
+        //$dbname = "interns_cse442";
+        $dbname = "my442db";
+        $conn = new mysqli("", "root", "", $dbname);
+        $current = "SELECT data_percent FROM mydb";
         $value = $conn->query($current);
         $yes = 0;
         $no = 0;
@@ -89,8 +88,9 @@
             $html_yes = strval(round(($yes/$sum)*100, 2) . '%');
             $html_no = strval(round(($no/$sum)*100, 2) . '%');
         }
-
+        
     ?>
+    
     <main>
         <div class="container">
         <form method="post" action="quizpage.php"> 
@@ -103,8 +103,28 @@
                     <li><input name="alcohol_choice" type="radio" onclick="recordClick('option2')" value="No" />No</li>
                     <?php echo "Selected percentage: $html_no<br>";?>
                 </ul>
-                <input type="submit" value="NEXT" />
-                <input type="submit" value="BACK" />
+
+                <button name="back">BACK</button>
+                <button id="next">NEXT</button>
+                
+                <script>
+                    //var back = document.getElementsById("back");
+                    //back.addEventListener("click", function() {
+                       
+                    //});
+                    // Get the button element
+                    var button = document.getElementById("next");
+                    // Add a click event listener to the button
+                    button.addEventListener("click", function() {
+                        var alcoholChoice = document.querySelector('input[name="alcohol_choice"]:checked');
+                        if (!alcoholChoice) {
+                            //window.location.replace("question1.php");
+                            alert("You have not selected any options yet!");
+                            
+                            <?php session_start();$_SESSION['question1'] = False;?>
+                        }
+                        });
+                </script>  
             </form>
         </div>
           
