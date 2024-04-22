@@ -60,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //$_SESSION['error_message'] = "You have not selected any options yet!";
         header("Location:question1.php");
     }
-    
     if (isset($_POST["alcohol_choice"])) {
         //echo "hello";
         session_start();

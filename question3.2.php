@@ -96,6 +96,9 @@
     ?>
     <main>
         <div class="container">
+        <form method="post" action="back.php">
+            <input type="submit" name="back3" value="BACK">
+        </form>
             <form method="post" action="quizpage.php"> <!-- Modified form tag -->
                 <p class="question">
                     <label>What kind of travel site do you prefer?</label>
@@ -110,7 +113,6 @@
                     <li><input name="site_choice" type="radio" onclick="recordClick('option4')" value="Chilling" />Chilling</li>
                     <?php echo "Selected percentage: $html_relax<br>";?>
                 </ul>
-                <input type="submit" value="BACK" />
                 <button id="next">NEXT</button>
                 <script>
                     // Get the button element

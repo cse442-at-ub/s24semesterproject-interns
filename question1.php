@@ -88,11 +88,15 @@
             $html_yes = strval(round(($yes/$sum)*100, 2) . '%');
             $html_no = strval(round(($no/$sum)*100, 2) . '%');
         }
-        
+        //session_start();$_SESSION['back_1'] = False;$_SESSION['question1'] = False;
     ?>
-    
+     
+   
     <main>
         <div class="container">
+        <form method="post" action="back.php">
+            <input type="submit" name="back1"value="BACK">
+        </form>
         <form method="post" action="quizpage.php"> 
                 <p class="question">
                     <label>Do you like alcohol?</label>
@@ -103,15 +107,8 @@
                     <li><input name="alcohol_choice" type="radio" onclick="recordClick('option2')" value="No" />No</li>
                     <?php echo "Selected percentage: $html_no<br>";?>
                 </ul>
-
-                <button name="back">BACK</button>
                 <button id="next">NEXT</button>
-                
-                <script>
-                    //var back = document.getElementsById("back");
-                    //back.addEventListener("click", function() {
-                       
-                    //});
+                <script> 
                     // Get the button element
                     var button = document.getElementById("next");
                     // Add a click event listener to the button
@@ -125,7 +122,7 @@
                         }
                         });
                 </script>  
-            </form>
+                </form>
         </div>
           
     </main>

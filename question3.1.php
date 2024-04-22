@@ -96,6 +96,9 @@
     </header>
     <main>
         <div class="container">
+        <form method="post" action="back.php">
+            <input type="submit" name="back3"value="BACK">
+        </form>
             <form method="post" action="quizpage.php"> <!-- Modified form tag -->
                 <p class="question">
                     <label>What kind of cuisine are you intertested in?</label>
@@ -110,7 +113,6 @@
                     <li><input name="cuisine_choice" type="radio" onclick="recordClick('option4')" value="American" />American</li>
                     <?php echo "Selected percentage: $html_usa<br>";?>
                 </ul>
-                <input type="submit" value="BACK" />
                 <button id="next">NEXT</button>
                 <script>
                     // Get the button element

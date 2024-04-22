@@ -96,6 +96,9 @@
     ?>
     <main>
         <div class="container">
+        <form method="post" action="back.php">
+            <input type="submit" name="back3" value="BACK">
+        </form>
             <form method="post" action="quizpage.php"> 
                 <p class="question">
                     <label>What are you shopping for?</label>
@@ -110,7 +113,6 @@
                     <li><input name="shopping_choice" type="radio" onclick="recordClick('option4')" value="Necessities" />Necessities</li>
                     <?php echo "Selected percentage: $html_necess<br>";?>
                 </ul>
-                <input type="submit" value="BACK" />
                 <button id="next">NEXT</button>
                 <script>
                     // Get the button element

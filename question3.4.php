@@ -97,6 +97,9 @@
     ?>
     <main>
         <div class="container">
+        <form method="post" action="back.php">
+            <input type="submit" name="back3" value="BACK">
+        </form>
             <p>
                 <label>What type of study do you like to do?</label>
             </p>
@@ -111,7 +114,6 @@
                     <li><input name="choice" type="radio" onclick="recordClick('option4')" value="Visit public institution" />Visit public institution</li>
                     <?php echo "Selected percentage: $html_nature<br>";?>
                 </ul>
-                <input type="submit" value="BACK" />
                 <button id="next">NEXT</button>
                 <script>
                     // Get the button element
