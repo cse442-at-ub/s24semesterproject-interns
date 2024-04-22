@@ -59,7 +59,7 @@
 <body>
     <div class="container">
         <h1>Welcome</h1>
-        <form method="post" action="compare_states.php">
+        <form method="post">
             <div class="question">
                 <label for="state1">Enter State 1:</label><br>
                 <input type="text" name="state1" id="state1" class="answer-box">
@@ -72,6 +72,46 @@
                 <button type="submit">Compare States</button>
             </div>
         </form>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $state1 = $_POST["state1"];
+            $state2 = $_POST["state2"];
+
+            $csvFile = file("states_data.csv");
+            $data = [];
+            foreach ($csvFile as $line) {
+                $data[] = str_getcsv($line);
+            }
+
+            $state1Data = null;
+            $state2Data = null;
+
+            foreach ($data as $row) {
+                if ($row[0] === $state1) {
+                    $state1Data = $row;
+                }
+                if ($row[0] === $state2) {
+                    $state2Data = $row;
+                }
+            }
+
+            if ($state1Data && $state2Data) {
+                echo "<h2>Comparison Results</h2>";
+                echo "<p>{$state1Data[0]}:</p>";
+                echo "<ul>";
+                echo "<li>Most Popular Ranking: {$state1Data[1]}</li>";
+                echo "<li>Population Growth (07/2021 to 07/2022): {$state1Data[2]} ({$state1Data[3]}%)</li>";
+                echo "</ul>";
+                echo "<p>{$state2Data[0]}:</p>";
+                echo "<ul>";
+                echo "<li>Most Popular Ranking: {$state2Data[1]}</li>";
+                echo "<li>Population Growth (07/2021 to 07/2022): {$state2Data[2]} ({$state2Data[3]}%)</li>";
+                echo "</ul>";
+            } else {
+                echo "<p>Invalid state names entered. Please try again.</p>";
+            }
+        }
+        ?>
     </div>
 </body>
 </html>
