@@ -88,16 +88,16 @@
     <body>
         <div class="navbar">
             <a href="welcome.php">
-                <button type="submit">Return to welcome page</button>
+                <button type="submit"><img src = "Matthew.png" width="35" height="35">Return to welcome page</button>
             </a>  
             <a href="question1.php">
-                <button type="submit">Retake quiz</button>
+                <button type="submit"><img src = "Matthew.png" width="35" height="35">Retake quiz</button>
             </a>
             <a href="recommendation.php">
-                <button type="submit">Return to recommendation page</button>
+                <button type="submit"><img src = "Matthew.png" width="35" height="35">Return to recommendation page</button>
             </a>
             <a id = "rate" href="rating.php">
-                <button type="submit">&#11088;Rate US!&#11088;</button>
+                <button type="submit"><img src = "Matthew.png" width="35" height="35">&#11088;Rate US!&#11088;</button>
             </a>
             <a id = "loc"><?php echo $loc?></a>
         </div>
