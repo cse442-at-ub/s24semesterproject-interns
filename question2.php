@@ -17,6 +17,7 @@
             font-family: 'Times New Roman', Times, serif, sans-serif;
             margin: 0;
             padding: 0;
+            font-size: 20px;
             background-color: #C3B1E1;
         }
         .container {
@@ -64,9 +65,10 @@
     </style>
     <?php
         //$dbname = "cse442_2024_spring_team_f_db";
-        $dbname = "interns_cse442";
-        $conn = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
-        $current = "SELECT data_percent FROM interns_cse442";
+        //$dbname = "interns_cse442";
+        $dbname = "my442db";
+        $conn = new mysqli("", "root", "", $dbname);
+        $current = "SELECT data_percent FROM mydb";
         $value = $conn->query($current);
         $food = 0;
         $experience = 0;
@@ -93,10 +95,14 @@
             $html_shop = strval(round(($shopping/$sum)*100,2) . '%');
             $html_study = strval(round(($study/$sum)*100 ,2). '%');
         }
-
+        
     ?>
     <main>
         <div class="container">
+        <form method="post" action="back.php">
+            <input type="submit" name="back2" value="BACK">
+        </form>
+        
             <form method="post" action="quizpage.php"> 
                 <p class="question">
                     <label>What is the purpose of your travel?</label>
@@ -111,7 +117,22 @@
                     <li><input name="purpose_choice" type="radio" onclick="recordClick('option4')" value="For Academic Purpose" />For Academic Purpose</li>
                     <?php echo "Selected percentage: $html_study<br>";?>
                 </ul>
-                <input type="submit" value="NEXT" />
+                
+                <button id="next">NEXT</button>
+                <script>
+                    // Get the button element
+                    var button = document.getElementById("next");
+                    // Add a click event listener to the button
+                    button.addEventListener("click", function() {
+                        var purpose_choice = document.querySelector('input[name="purpose_choice"]:checked');
+                        if (!purpose_choice) {
+                            //window.location.replace("question1.php");
+                            alert("You have not selected any options yet!");
+                            
+                            <?php session_start();$_SESSION['question2'] = False;?>
+                        }
+                        });
+                </script>  
             </form>
         </div>
     </main>

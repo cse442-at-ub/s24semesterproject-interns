@@ -16,6 +16,7 @@
         body {
             font-family: 'Times New Roman', Times, serif, sans-serif;
             margin: 0;
+            font-size: 20px;
             padding: 0;
             background-color: #C3B1E1;
         }
@@ -63,9 +64,10 @@
         }
     </style>
     <?php
-            $dbname = "interns_cse442";
-            $conn = new mysqli("oceanus.cse.buffalo.edu:3306", "shengans", '50404824', "cse442_2024_spring_team_f_db");
-            $current = "SELECT data_percent FROM interns_cse442";
+            $dbname = "my442db";
+            //$dbname = "interns_cse442";
+            $conn = new mysqli("", "root", "", $dbname);
+            $current = "SELECT data_percent FROM mydb";
             $value = $conn->query($current);
             $museum = 0;
             $book = 0;
@@ -96,6 +98,9 @@
     ?>
     <main>
         <div class="container">
+        <form method="post" action="back.php">
+            <input type="submit" name="back3" value="BACK">
+        </form>
             <p>
                 <label>What type of study do you like to do?</label>
             </p>
@@ -110,7 +115,21 @@
                     <li><input name="choice" type="radio" onclick="recordClick('option4')" value="Visit public institution" />Visit public institution</li>
                     <?php echo "Selected percentage: $html_nature<br>";?>
                 </ul>
-                <input type="submit" value="Submit" />
+                <button id="next">NEXT</button>
+                <script>
+                    // Get the button element
+                    var button = document.getElementById("next");
+                    // Add a click event listener to the button
+                    button.addEventListener("click", function() {
+                        var choice = document.querySelector('input[name="choice"]:checked');
+                        if (!choice) {
+                            //window.location.replace("question1.php");
+                            alert("You have not selected any options yet!");
+                            
+                            <?php session_start();$_SESSION['question3.4'] = False;?>
+                        }
+                        });
+                </script>  
             </form>
         </div>
         
