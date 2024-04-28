@@ -27,9 +27,10 @@
     $chat_messages = ""; 
 
     while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row["Name"];
+        $name = $row["Name"];
         $message = $row["message"];
-        $chat_messages .= "$id: $message<br>";
+        $msg = $msg ."<br><p id = 'loc2'>" . $name . ": " . $message  ."</p>" ;
+        $msg = $msg . "<br><hr>";
     }
 
 
@@ -88,16 +89,16 @@
     <body>
         <div class="navbar">
             <a href="welcome.php">
-                <button type="submit"><img src = "Matthew.png" width="35" height="35">Return to welcome page</button>
+                <button type="submit">Return to welcome page</button>
             </a>  
             <a href="question1.php">
-                <button type="submit"><img src = "Matthew.png" width="35" height="35">Retake quiz</button>
+                <button type="submit">Retake quiz</button>
             </a>
             <a href="recommendation.php">
-                <button type="submit"><img src = "Matthew.png" width="35" height="35">Return to recommendation page</button>
+                <button type="submit">Return to recommendation page</button>
             </a>
             <a id = "rate" href="rating.php">
-                <button type="submit"><img src = "Matthew.png" width="35" height="35">&#11088;Rate US!&#11088;</button>
+                <button type="submit">&#11088;<img src = "Matthew.png" width="35" height="35">Rate US!&#11088;</button>
             </a>
             <a id = "loc"><?php echo $loc?></a>
         </div>
