@@ -70,45 +70,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .button-group {
             text-align: center;
         }
-        .button-group button {
+        .button-group button, .next-button, .compare-button {
             padding: 10px 20px;
-            margin: 0 10px;
+            margin: 10px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-        .button-group button.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .next-button {
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #C3B1E1;
+            color: rgb(2, 2, 2);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome</h1>
-        <form method="post" >
+        <form method="post">
             <div class="question">
-                <label for="state">Enter a State:</label><br>
-                <!-- <input type="text" id="state" class="answer-box"> -->
+                <label for="destined-location">Enter a State:</label><br>
                 <input type="text" name="destined-location" id="destined-location" class="answer-box">
             </div>
             <div class="question">
-                <label for="city">Enter a City:</label><br>
-                <!-- <input type="text" id="city" class="answer-box"> -->
+                <label for="user-city">Enter a City:</label><br>
                 <input type="text" name="user-city" id="user-city" class="answer-box">
             </div>
-            <form class = "next-button">
-                <input type="submit" value="Next to our quiz!" />
-            </form>
-
-            <button class="next-button" onclick = "goToCalendar()">Go To Calendar</button>
+            <input type="submit" value="Next to our quiz!" class="next-button" />
+            <button class="next-button" onclick="goToCalendar()">Go To Calendar</button>
+            <!-- Button to redirect to compare states -->
+            
         </form>
+        <button class="compare-button" onclick="window.location.href='comparecities.php'">Go To Compare Cites</button>
     </div>
 
     <script>
@@ -118,4 +109,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </body>
 </html>
-
