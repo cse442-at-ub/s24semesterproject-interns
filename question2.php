@@ -59,7 +59,7 @@
         }
         .next-button {
             margin-top: 20px;
-            background-color: #4CAF50;
+            background-color: #C3B1E1;
             color: white;
         }
     </style>
@@ -100,7 +100,7 @@
     <main>
         <div class="container">
         <form method="post" action="back.php">
-            <input type="submit" name="back2" value="BACK">
+            <input class="next-button" type="submit" name="back2" value="BACK">
         </form>
         
             <form method="post" action="quizpage.php"> 
@@ -118,7 +118,7 @@
                     <?php echo "Selected percentage: $html_study<br>";?>
                 </ul>
                 
-                <button id="next">NEXT</button>
+                <button class="next-button" id="next">NEXT</button>
                 <script>
                     // Get the button element
                     var button = document.getElementById("next");
