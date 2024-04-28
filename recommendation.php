@@ -33,8 +33,6 @@ foreach ($data as $key => $value) {
 session_start();
 $d = $_SESSION['recommend'];
 
-//$d = $_GET['result']; // change this to be a list
-//$d = unserialize(urldecode($d));
 ?>
 
 
@@ -55,7 +53,7 @@ $d = $_SESSION['recommend'];
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #C3B1E1;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -97,6 +95,7 @@ $d = $_SESSION['recommend'];
             <?php endforeach; ?>
         </div>
     
+        
 
     <script>
         function navigateToGoogle(category) {

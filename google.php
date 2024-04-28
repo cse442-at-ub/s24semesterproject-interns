@@ -27,9 +27,10 @@
     $chat_messages = ""; 
 
     while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row["Name"];
+        $name = $row["Name"];
         $message = $row["message"];
-        $chat_messages .= "$id: $message<br>";
+        $msg = $msg ."<br><p id = 'loc2'>" . $name . ": " . $message  ."</p>" ;
+        $msg = $msg . "<br><hr>";
     }
 
 
@@ -97,7 +98,7 @@
                 <button type="submit">Return to recommendation page</button>
             </a>
             <a id = "rate" href="rating.php">
-                <button type="submit">&#11088;Rate US!&#11088;</button>
+                <button type="submit">&#11088;<img src = "Matthew.png" width="35" height="35">Rate US!&#11088;</button>
             </a>
             <a id = "loc"><?php echo $loc?></a>
         </div>

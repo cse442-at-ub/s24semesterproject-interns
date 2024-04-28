@@ -53,7 +53,7 @@ body {
     padding: 1rem;
     flex-grow: 0;
     cursor: pointer;
-    background: blue;
+    background: #C3B1E1;
     font-size: 1.2rem;
     color: white;
     border: medium;
@@ -93,7 +93,7 @@ body {
   #chatbox {
     width: 700px;
     margin-left: 25px;
-    border-top: 1px solid #C6BFB6;
+    border-top: 1px solid #CCCCFF;
     padding: 10px;
   }
   

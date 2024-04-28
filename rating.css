@@ -66,13 +66,13 @@ body {
     margin-left:auto;
     margin-right:auto;
     border-radius: 5px;
-    background-color: #FFFAF1;
+    background-color: #CCCCFF;
     overflow-y: auto;
   }
   
   #chatbox {
     width: 700px;
     margin-left: 25px;
-    border-top: 1px solid #C6BFB6;
+    border-top: 1px solid #CCCCFF;
     padding: 10px;
   }
