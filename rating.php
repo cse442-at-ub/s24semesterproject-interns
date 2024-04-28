@@ -55,7 +55,7 @@
         $name =$row["Name"];
         $message = $row["message"];
         $rate = $row["value"];
-        $msg = $msg ."<br>" . $name . ": " . $message . "(" . $rate . "/5) &#11088;";
+        $msg = $msg ."<br><p id = 'loc'>" . $name . ": " . $message . "(" . $rate . "/5) &#11088;</p>";
     }
     $conn->close();
 ?>
