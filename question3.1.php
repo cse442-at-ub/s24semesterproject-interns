@@ -57,9 +57,9 @@
                 color: white;
             }
             .next-button {
-                margin-top: 20px;
-                background-color: #4CAF50;
-                color: white;
+            margin-top: 20px;
+            background-color: #C3B1E1;
+            color: white;
             }
         </style>
         <?php
@@ -98,7 +98,7 @@
     <main>
         <div class="container">
         <form method="post" action="back.php">
-            <input type="submit" name="back3"value="BACK">
+            <input class="next-button" type="submit" name="back3"value="BACK">
         </form>
             <form method="post" action="quizpage.php"> <!-- Modified form tag -->
                 <p class="question">
@@ -114,7 +114,7 @@
                     <li><input name="cuisine_choice" type="radio" onclick="recordClick('option4')" value="American" />American</li>
                     <?php echo "Selected percentage: $html_usa<br>";?>
                 </ul>
-                <button id="next">NEXT</button>
+                <button class="next-button" id="next">NEXT</button>
                 <script>
                     // Get the button element
                     var button = document.getElementById("next");

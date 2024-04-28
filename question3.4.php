@@ -59,7 +59,7 @@
         }
         .next-button {
             margin-top: 20px;
-            background-color: #4CAF50;
+            background-color: #C3B1E1;
             color: white;
         }
     </style>
@@ -99,7 +99,7 @@
     <main>
         <div class="container">
         <form method="post" action="back.php">
-            <input type="submit" name="back3" value="BACK">
+            <input class="next-button" type="submit" name="back3" value="BACK">
         </form>
             <p>
                 <label>What type of study do you like to do?</label>
@@ -115,7 +115,7 @@
                     <li><input name="choice" type="radio" onclick="recordClick('option4')" value="Visit public institution" />Visit public institution</li>
                     <?php echo "Selected percentage: $html_nature<br>";?>
                 </ul>
-                <button id="next">NEXT</button>
+                <button class="next-button" id="next">NEXT</button>
                 <script>
                     // Get the button element
                     var button = document.getElementById("next");
