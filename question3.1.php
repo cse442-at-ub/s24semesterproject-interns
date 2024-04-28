@@ -16,6 +16,7 @@
                 font-family: 'Times New Roman', Times, serif, sans-serif;
                 margin: 0;
                 padding: 0;
+                font-size: 20px;
                 background-color: #C3B1E1;
             }
             .container {

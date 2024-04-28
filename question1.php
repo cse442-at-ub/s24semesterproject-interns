@@ -18,6 +18,7 @@
             font-family: 'Times New Roman', Times, serif, sans-serif;
             margin: 0;
             padding: 0;
+            font-size: 20px;
             background-color: #C3B1E1;
         }
         .container {
@@ -62,7 +63,8 @@
             background-color: #4CAF50;
             color: white;
         }
-    </style>
+
+        </style>
     <?php
         //$dbname = "cse442_2024_spring_team_f_db";
         //$dbname = "interns_cse442";
@@ -101,12 +103,12 @@
                 <p class="question">
                     <label>Do you like alcohol?</label>
                 </p>
-                <ul class="choices">
-                    <li><input name="alcohol_choice" type="radio" onclick="recordClick('option1')" value="Yes" />Yes</li>
-                    <?php echo "Selected percentage: $html_yes<br>";?>
-                    <li><input name="alcohol_choice" type="radio" onclick="recordClick('option2')" value="No" />No</li>
-                    <?php echo "Selected percentage: $html_no<br>";?>
-                </ul>
+                <div class="choices">
+                    <input name="alcohol_choice" type="radio" value="Yes">
+                    <label for="Yes">Yes<br><?php echo "Selected percentage: $html_yes<br>";?></label>
+                    <input name="alcohol_choice" type="radio" value="No">
+                    <label for="No">No<br><?php echo "Selected percentage: $html_no<br>";?></label>
+                </div>
                 <button id="next">NEXT</button>
                 <script> 
                     // Get the button element

@@ -16,6 +16,7 @@
         body {
             font-family: 'Times New Roman', Times, serif, sans-serif;
             margin: 0;
+            font-size: 20px;
             padding: 0;
             background-color: #C3B1E1;
         }
